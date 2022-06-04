@@ -10,6 +10,8 @@ import gambar3 from '../assets/products/gambar3.png'
 import gambar4 from '../assets/products/gambar4.png'
 import gambar5 from '../assets/products/gambar5.png'
 import gambar6 from '../assets/products/gambar6.png'
+import UlasanProps from './ulasan/ulasanProps'
+import ReviewProps from './ulasan/reviewProps'
 
 function Ulasan() {
     return (
@@ -31,32 +33,32 @@ function Ulasan() {
                     <div className='py-1 items-center flex gap-[20px]'>
                         <h1>5</h1>
                         <AiFillStar className='text-[#FBC646]' />
-                        <div className='bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
-                        <h1>24</h1>
+                        <div className='blue-1 relative bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
+                        <h1 className="w-[30px]">24</h1>
                     </div>
                     <div className='py-1 items-center flex gap-[20px]'>
                         <h1>4</h1>
                         <AiFillStar className='text-[#FBC646]' />
-                        <div className='bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
-                        <h1>24</h1>
+                        <div className='blue-2 relative bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
+                        <h1 className="w-[30px]">8</h1>
                     </div>
                     <div className='py-1 items-center flex gap-[20px]'>
                         <h1>3</h1>
                         <AiFillStar className='text-[#FBC646]' />
-                        <div className='bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
-                        <h1>24</h1>
+                        <div className='blue-3 relative bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
+                        <h1 className="w-[30px]">4</h1>
                     </div>
                     <div className='py-1 items-center flex gap-[20px]'>
                         <h1>2</h1>
                         <AiFillStar className='text-[#FBC646]' />
                         <div className='bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
-                        <h1>24</h1>
+                        <h1 className="w-[30px]">0</h1>
                     </div>
                     <div className='py-1 items-center flex gap-[20px]'>
                         <h1>1</h1>
                         <AiFillStar className='text-[#FBC646]' />
                         <div className='bg-[#E1E1E1] rounded-md h-[10px] w-[250px]'></div>
-                        <h1>24</h1>
+                        <h1 className="w-[30px]">0</h1>
                     </div>
                 </div>
             </div>
@@ -88,71 +90,10 @@ function Ulasan() {
             </div>
 
             <div className='flex flex-col gap-[20px]'>
-
-                <div className="p-5 max-w-[750px] border-[1px] border-black rounded-md">
-                    <h1>K***21</h1>
-                    <div className='flex text-[#FBC646]'>
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                    </div>
-                    <h1>Produk Original dan sesuai seperti pada gambar. Kualitas produk baik dan warnanya cantik</h1>
-                    <div className='flex'>
-                        <img src={review} alt="" />
-                        <img src={review2} alt="" />
-                    </div>
-                    <h2>2022-02-22 06:25</h2>
-                </div>
-                <div className="p-5 max-w-[750px] border-[1px] border-black rounded-md">
-                    <h1>K***21</h1>
-                    <div className='flex text-[#FBC646]'>
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                    </div>
-                    <h1>Produk Original dan sesuai seperti pada gambar. Kualitas produk baik dan warnanya cantik</h1>
-                    <div className='flex'>
-                        <img src={review} alt="" />
-                        <img src={review2} alt="" />
-                    </div>
-                    <h2>2022-02-22 06:25</h2>
-                </div>
-                <div className="p-5 max-w-[750px] border-[1px] border-black rounded-md">
-                    <h1>K***21</h1>
-                    <div className='flex text-[#FBC646]'>
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                    </div>
-                    <h1>Produk Original dan sesuai seperti pada gambar. Kualitas produk baik dan warnanya cantik</h1>
-                    <div className='flex'>
-                        <img src={review} alt="" />
-                        <img src={review2} alt="" />
-                    </div>
-                    <h2>2022-02-22 06:25</h2>
-                </div>
-                <div className="p-5 max-w-[750px] border-[1px] border-black rounded-md">
-                    <h1>K***21</h1>
-                    <div className='flex text-[#FBC646]'>
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                    </div>
-                    <h1>Produk Original dan sesuai seperti pada gambar. Kualitas produk baik dan warnanya cantik</h1>
-                    <div className='flex'>
-                        <img src={review} alt="" />
-                        <img src={review2} alt="" />
-                    </div>
-                    <h2>2022-02-22 06:25</h2>
-                </div>
+                <ReviewProps />
+                <ReviewProps />
+                <ReviewProps />
+                <ReviewProps />
             </div>
 
             <div className='py-24'>
@@ -190,66 +131,12 @@ function Ulasan() {
                     </div>
 
                     <div className='flex items-center gap-[30px]'>
-                        <div className='p-2 border-black border-[1px] max-w-[180px] flex-col items-center justify-center'>
-                            <img src={gambar1} alt="" />
-                            <h1>Gelas kaca bening biru</h1>
-                            <h1 className='py-4 font-bold'>Rp 23.000</h1>
-                            <div className='flex items-center'>
-                                <AiFillStar className='text-sm text-[#FBC646]' />
-                                <h3 className='border-r-[1px] pl-1 pr-2 border-black'>4.8</h3>
-                                <h3 className='ml-2'>Terjual 100</h3>
-                            </div>
-                        </div>
-                        <div className='p-2 border-black border-[1px] max-w-[180px] flex-col items-center justify-center'>
-                            <img src={gambar2} alt="" />
-                            <h1>Gelas kaca bening biru</h1>
-                            <h1 className='py-4 font-bold'>Rp 23.000</h1>
-                            <div className='flex items-center'>
-                                <AiFillStar className='text-sm text-[#FBC646]' />
-                                <h3 className='border-r-[1px] pl-1 pr-2 border-black'>4.8</h3>
-                                <h3 className='ml-2'>Terjual 100</h3>
-                            </div>
-                        </div>
-                        <div className='p-2 border-black border-[1px] max-w-[180px] flex-col items-center justify-center'>
-                            <img src={gambar3} alt="" />
-                            <h1>Gelas kaca bening biru</h1>
-                            <h1 className='py-4 font-bold'>Rp 23.000</h1>
-                            <div className='flex items-center'>
-                                <AiFillStar className='text-sm text-[#FBC646]' />
-                                <h3 className='border-r-[1px] pl-1 pr-2 border-black'>4.8</h3>
-                                <h3 className='ml-2'>Terjual 100</h3>
-                            </div>
-                        </div>
-                        <div className='p-2 border-black border-[1px] max-w-[180px] flex-col items-center justify-center'>
-                            <img src={gambar4} alt="" />
-                            <h1>Gelas kaca bening biru</h1>
-                            <h1 className='py-4 font-bold'>Rp 23.000</h1>
-                            <div className='flex items-center'>
-                                <AiFillStar className='text-sm text-[#FBC646]' />
-                                <h3 className='border-r-[1px] pl-1 pr-2 border-black'>4.8</h3>
-                                <h3 className='ml-2'>Terjual 100</h3>
-                            </div>
-                        </div>
-                        <div className='p-2 border-black border-[1px] max-w-[180px] flex-col items-center justify-center'>
-                            <img src={gambar5} alt="" />
-                            <h1>Gelas kaca bening biru</h1>
-                            <h1 className='py-4 font-bold'>Rp 23.000</h1>
-                            <div className='flex items-center'>
-                                <AiFillStar className='text-sm text-[#FBC646]' />
-                                <h3 className='border-r-[1px] pl-1 pr-2 border-black'>4.8</h3>
-                                <h3 className='ml-2'>Terjual 100</h3>
-                            </div>
-                        </div>
-                        <div className='p-2 border-black border-[1px] max-w-[180px] flex-col items-center justify-center'>
-                            <img src={gambar6} alt="" />
-                            <h1>Gelas kaca bening biru</h1>
-                            <h1 className='py-4 font-bold'>Rp 23.000</h1>
-                            <div className='flex items-center'>
-                                <AiFillStar className='text-sm text-[#FBC646]' />
-                                <h3 className='border-r-[1px] pl-1 pr-2 border-black'>4.8</h3>
-                                <h3 className='ml-2'>Terjual 100</h3>
-                            </div>
-                        </div>
+                        <UlasanProps gambar={gambar1} />
+                        <UlasanProps gambar={gambar2} />
+                        <UlasanProps gambar={gambar3} />
+                        <UlasanProps gambar={gambar4} />
+                        <UlasanProps gambar={gambar5} />
+                        <UlasanProps gambar={gambar6} />
                     </div>
 
                 </div>

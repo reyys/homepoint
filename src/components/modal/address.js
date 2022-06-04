@@ -5,8 +5,6 @@ import { addressContext } from '../../context/context'
 
 function Address({ setAddress, setAlamatPengguna, setAlamat, alamatPengguna }) {
 
-    const [name, setName] = React.useState("")
-
     const [userAddress, setUserAddress] = React.useState({
         labelAlamat: "",
         provinsi: "Aceh",
@@ -45,7 +43,7 @@ function Address({ setAddress, setAlamatPengguna, setAlamat, alamatPengguna }) {
         setAddress(false)
     }
 
-    const { listProvinsi, listKabupaten, listKecamatan, listKelurahan } = useContext(addressContext)
+    const { listProvinsi } = useContext(addressContext)
 
 
 

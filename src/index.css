@@ -64,9 +64,17 @@
   .grid {
     grid-template-columns: repeat(2, 180px);
   }
+
+  .modal-bg {
+    height: 200vh;
+  }
 }
 @media only screen and (max-width: 368px) {
   .grid {
     grid-template-columns: repeat(2, 140px);
+  }
+
+  .modal-bg {
+    height: 200vh;
   }
 }

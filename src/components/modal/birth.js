@@ -54,7 +54,7 @@ function Birth({ setBirth, setData, data }) {
 
     return (
         <div className='modal-bg flex w-full h-full absolute left-0 top-0 justify-center items-center'>
-            <div className='relative flex flex-col items-center justify-center w-[40%] h-[30%] rounded-md bg-white p-16 z-99'>
+            <div className='relative flex flex-col items-center justify-center w-[80%] md:w-[40%] h-[30%] rounded-md bg-white p-16 z-99'>
                 <img onClick={() => setBirth(false)} className="cursor-pointer absolute right-[20px] top-[20px] max-w-[20px]" src={closeIcon} alt="" />
                 <h1 className='text-center font-bold text-[#316093]'>Tambah Tanggal Lahir</h1>
                 <div className='p-2 mt-6 w-full flex justify-center gap-[50px]'>

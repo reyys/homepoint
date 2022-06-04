@@ -49,7 +49,7 @@ function Address({ setAddress, setAlamatPengguna, setAlamat, alamatPengguna }) {
 
     return (
         <div className='modal-bg flex w-full h-full absolute bg-red-500 left-0 top-0 justify-center items-center'>
-            <div className='relative modal-auto flex flex-col items-center justify-center w-[40%] h-[90%] rounded-md bg-white p-16 z-99'>
+            <div className='relative modal-auto flex flex-col items-center justify-center w-[80%] md:w-[40%] h-[90%] rounded-md bg-white p-16 z-99'>
                 <img onClick={() => setAddress(false)} className="cursor-pointer absolute right-[20px] top-[20px] max-w-[20px]" src={closeIcon} alt="" />
                 <h1 className='py-3 text-center font-bold text-[#316093]'>Tambahkan Alamat</h1>
                 <h1 className='py-2 w-full'>Informasi Detail Alamat</h1>

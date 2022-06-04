@@ -17,7 +17,7 @@ function Nomor({ setNomor, setData, data }) {
 
     return (
         <div className='modal-bg flex w-full h-full absolute bg-red-500 left-0 top-0 justify-center items-center'>
-            <div className='relative flex flex-col items-center justify-center w-[40%] h-[30%] rounded-md bg-white p-16 z-99'>
+            <div className='relative flex flex-col items-center justify-center w-[80%] md:w-[40%] h-[30%] rounded-md bg-white p-16 z-99'>
                 <img onClick={() => setNomor(false)} className="cursor-pointer absolute right-[20px] top-[20px] max-w-[20px]" src={closeIcon} alt="" />
                 <h1 className='text-center font-bold text-[#316093]'>Ubah Nama Lengkap</h1>
                 <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>

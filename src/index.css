@@ -55,3 +55,18 @@
   border-radius: 5px 5px 5px 5px;
   background-color: #316093;
 }
+
+.grid {
+  grid-template-columns: repeat(6, 180px);
+}
+
+@media only screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 180px);
+  }
+}
+@media only screen and (max-width: 368px) {
+  .grid {
+    grid-template-columns: repeat(2, 140px);
+  }
+}

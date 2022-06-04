@@ -32,25 +32,24 @@ function Profile() {
 
     console.log(alamatPengguna)
     return (
-        <div className='w-full h-full py-24 px-96'>
+        <div className='w-full h-full px-4 md:py-24 flex flex-col justify-center md:items-center'>
             {modal ? <Modal setModal={setModal} setData={setData} data={data} /> : ""}
             {birth ? <Birth setBirth={setBirth} setData={setData} data={data} /> : ""}
             {gender ? <Gender setGender={setGender} setData={setData} data={data} /> : ""}
             {nomor ? <Nomor setNomor={setNomor} setData={setData} data={data} /> : ""}
             {address ? <Address setAddress={setAddress} setAlamat={setAlamat} setAlamatPengguna={setAlamatPengguna} alamatPengguna={alamatPengguna} /> : ""}
-
-            <h1 className='w-full text-2xl font-bold py-3'>Profil</h1>
-            <div className='flex gap-[20px]'>
-                <div className='p-3 max-h-[380px] border-[#98B6C9] border-[1px] rounded-md'>
-                    <img className='p-24 bg-[#F2F2F2]' src={profileIcon} alt="" />
+            <div className='flex flex-col md:flex-row gap-[20px]'>
+                <h1 className='text-2xl md:hidden font-bold py-6'>Profil</h1>
+                <div className='p-3 max-h-[380px] max-w-fit border-[#98B6C9] border-[1px] rounded-md'>
+                    <img className='p-12 md:p-24 bg-[#F2F2F2]' src={profileIcon} alt="" />
                     <h1 className='font-bold'>Lynn Tanner</h1>
                     <h2 className='text-sm pb-4'>Bergabung sejak Jan 2022</h2>
-                    <button className='flex justify-center border-[1px] border-[#22364A] rounded-md w-[100%] px-5 py-2 gap-[20px]'>
+                    <button className='flex justify-center items-center border-[1px] border-[#22364A] rounded-md max-w-fit px-5 py-2 gap-[20px]'>
                         <img src={secureIcon} alt="" />
                         <h1 className='font-bold text-[#22364A]'>Ubah Kata Sandi</h1>
                     </button>
                 </div>
-                <div className='py-3 border-[#98B6C9] w-[450px] border-[1px] rounded-md'>
+                <div className='items-center mr-12 mt-12 mb-12 md:mt-0 py-3 sm:w-[350px] md:w-[500px] border-[#98B6C9] lg:w-[750px] border-[1px] rounded-md'>
                     <div className='w-full px-3 border-b-[1px] border-[#98B6C9] flex gap-[20px]'>
                         <h1 className={`text-[#B5B5B5] ${state ? "active" : ""} cursor-pointer`} onClick={() => setState(true)}>Biodata Diri</h1>
                         <h1 className={`text-[#B5B5B5] ${state ? "" : "active"} cursor-pointer`} onClick={() => setState(false)}>Alamat</h1>

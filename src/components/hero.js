@@ -9,25 +9,28 @@ import Ulasan from './ulasan'
 
 function Hero() {
     return (
-        <div className='w-full py-12 flex flex-col justify-between px-36'>
-            <div className='flex'>
+        <div className='w-full md:py-12 flex flex-col justify-between md:px-36'>
+            <div className='flex flex-col md:flex-row'>
                 <img className="max-h-[400px]" src={productImage} alt="" />
-                <div className='px-24'>
+                <div className='px-4 md:px-24'>
                     <h1 className='text-2xl font-semibold'>VISHAL Diamond Set</h1>
-                    <div className='flex items-center py-4'>
-                        <h3>4.8</h3>
-                        <div className='flex px-2 border-r-[1px] border-black'>
-                            <AiFillStar className='text-[#FBC646]' />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <AiFillStar className='text-[#FBC646]' />
+                    <div className='flex flex-col md:flex-row md:items-center text-sm md py-4'>
+                        <div className='flex items-center'>
+                            <h3>4.8</h3>
+                            <div className='flex px-2 md:border-r-[1px] md:border-black'>
+                                <AiFillStar className='text-[#FBC646]' />
+                                <AiFillStar className='text-[#FBC646]' />
+                                <AiFillStar className='text-[#FBC646]' />
+                                <AiFillStar className='text-[#FBC646]' />
+                                <AiFillStar className='text-[#FBC646]' />
+                            </div>
+
                         </div>
-                        <div className='flex gap-[20px] px-5 border-r-[1px] border-black'>
+                        <div className='flex gap-[20px] md:px-5 md:border-r-[1px] md:border-black'>
                             <h3>487</h3>
                             <span>Penilaian</span>
                         </div>
-                        <div className='flex gap-[20px] px-5 border-r-[1px] border-black'>
+                        <div className='flex gap-[20px] md:px-5 md:border-r-[1px] md:border-black'>
                             <h3>1,8RB</h3>
                             <span>Terjual</span>
                         </div>
@@ -71,7 +74,7 @@ function Hero() {
 
                             <div className='py-12'>
                                 <h1 className='font-bold'>Pengiriman Tersedia</h1>
-                                <div className='flex items-center mt-4 gap-[30px]'>
+                                <div className='flex flex-col md:flex-row items-center mt-4 gap-[30px]'>
                                     <div>
                                         <img src={icon1} alt="" />
                                         <h1>Kurir Reguler</h1>
@@ -89,7 +92,7 @@ function Hero() {
                         </div>
                     </div>
                 </div>
-                <div className='p-5 max-h-[450px] border-black border-[1px] rounded-md'>
+                <div className='p-5 ml-4 max-h-[450px] border-black border-[1px] rounded-md'>
                     <div className='flex gap-[20px] items-center justify-between p-5 border-black border-[1px]'>
                         <h1>{`<`}</h1>
                         <img src={productImage} className="max-w-[120px]" alt="" />

@@ -3,16 +3,51 @@ import React, { useContext } from 'react'
 import closeIcon from '../../assets/icon/close.png'
 import { addressContext } from '../../context/context'
 
-function Address({ setAddress, setData, data }) {
+function Address({ setAddress, setAlamatPengguna, setAlamat, alamatPengguna }) {
 
     const [name, setName] = React.useState("")
 
-    const { listProvinsi, listKabupaten, listKecamatan } = useContext(addressContext)
+    const [userAddress, setUserAddress] = React.useState({
+        labelAlamat: "",
+        provinsi: "Aceh",
+        kabupaten: "",
+        kecamatan: "",
+        kelurahan: "",
+        kodePos: "",
+        namaLengkap: "",
+        noHp: "",
+        alamatUtama: false
+    })
 
-    console.log(listKabupaten)
-    const changeName = () => {
+    const addressHandler = (e) => {
+        setUserAddress(prevData => {
+            return {
+                ...prevData,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
+    const mainAddress = () => {
+        setUserAddress(prevData => {
+            return {
+                ...prevData,
+                alamatUtama: !prevData.alamatUtama
+            }
+        })
+    }
+
+    console.log(userAddress)
+
+    const changeAddress = () => {
+        setAlamatPengguna(userAddress)
+        setAlamat(true)
         setAddress(false)
     }
+
+    const { listProvinsi, listKabupaten, listKecamatan, listKelurahan } = useContext(addressContext)
+
+
 
     return (
         <div className='modal-bg flex w-full h-full absolute bg-red-500 left-0 top-0 justify-center items-center'>
@@ -21,47 +56,38 @@ function Address({ setAddress, setData, data }) {
                 <h1 className='py-3 text-center font-bold text-[#316093]'>Tambahkan Alamat</h1>
                 <h1 className='py-2 w-full'>Informasi Detail Alamat</h1>
                 <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    <input onChange={(e) => setName(e.target.value)} className='w-full' placeholder='Label Alamat' />
+                    <input name="labelAlamat" onChange={(e) => addressHandler(e)} className='w-full' placeholder='Label Alamat' />
                 </div>
-                <select className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
+                <select name="provinsi" onChange={(e) => addressHandler(e)} className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
                     {listProvinsi.provinsi.map(each => {
                         return (
                             <option value={each.nama} key={each.id}>{each.nama}</option>
                         )
                     })}
                 </select>
-                <select className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    {listKabupaten.kota_kabupaten.map(each => {
-                        return (
-                            <option value={each.nama} key={each.id}>{each.nama}</option>
-                        )
-                    })}
-                </select>
-                <select className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    {listKecamatan.kecamatan.map(each => {
-                        return (
-                            <option value={each.nama} key={each.id}>{each.nama}</option>
-                        )
-                    })}
-                </select>
-                <select className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    <option value="Provinsi">Serpong</option>
-                </select>
-                <select className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    <option value="Provinsi">Kode Pos</option>
-                </select>
+                <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
+                    <input name="kabupaten" onChange={(e) => addressHandler(e)} className='w-full' placeholder='Kabupaten / Kota' />
+                </div>
+                <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
+                    <input name="kecamatan" onChange={(e) => addressHandler(e)} className='w-full' placeholder='Kecamatan' />
+                </div>
+                <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
+                    <input name="kelurahan" onChange={(e) => addressHandler(e)} className='w-full' placeholder='Kelurahan' />
+                </div>
+                <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
+                    <input onChange={(e) => addressHandler(e)} name="kodePos" className='w-full' placeholder='Kode Pos' />
+                </div>
                 <h1 className='py-2 mt-4 w-full'>Informasi Penerima</h1>
                 <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    <input onChange={(e) => setName(e.target.value)} className='w-full' placeholder='Nama Lengkap Penerima' />
+                    <input onChange={(e) => addressHandler(e)} name="namaLengkap" className='w-full' placeholder='Nama Lengkap Penerima' />
                 </div>
                 <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
-                    <input onChange={(e) => setName(e.target.value)} className='w-full' placeholder='No Hp Penerima' />
+                    <input onChange={(e) => addressHandler(e)} name="noHp" className='w-full' placeholder='No Hp Penerima' />
                 </div>
                 <div className='w-full mt-4'>
-                    <input id="utama" type="checkbox" /> <label htmlFor="utama">Jadikan Alamat Utama</label>
-
+                    <input onChange={() => mainAddress()} id="utama" type="checkbox" /> <label htmlFor="utama">Jadikan Alamat Utama</label>
                 </div>
-                <button onClick={() => changeName()} className='p-2 font-semibold px-12 rounded-md mt-6 bg-[#FBC646]'>Simpan Alamat</button>
+                <button onClick={() => changeAddress()} className='p-2 font-semibold px-12 rounded-md mt-6 bg-[#FBC646]'>Simpan Alamat</button>
             </div>
         </div>
     )

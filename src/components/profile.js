@@ -16,6 +16,12 @@ function Profile() {
         email: "lynntanner@gmail.com",
         hp: "No Hp"
     })
+
+    const [alamat, setAlamat] = React.useState(false)
+
+    const [alamatPengguna, setAlamatPengguna] = React.useState({
+
+    })
     const [state, setState] = React.useState(true)
     const [modal, setModal] = React.useState(false)
     const [birth, setBirth] = React.useState(false)
@@ -24,13 +30,14 @@ function Profile() {
 
     const [address, setAddress] = React.useState(false)
 
+    console.log(alamatPengguna)
     return (
         <div className='w-full h-full py-24 px-96'>
             {modal ? <Modal setModal={setModal} setData={setData} data={data} /> : ""}
             {birth ? <Birth setBirth={setBirth} setData={setData} data={data} /> : ""}
             {gender ? <Gender setGender={setGender} setData={setData} data={data} /> : ""}
             {nomor ? <Nomor setNomor={setNomor} setData={setData} data={data} /> : ""}
-            {address ? <Address setAddress={setAddress} setData={setData} data={data} /> : ""}
+            {address ? <Address setAddress={setAddress} setAlamat={setAlamat} setAlamatPengguna={setAlamatPengguna} alamatPengguna={alamatPengguna} /> : ""}
 
             <h1 className='w-full text-2xl font-bold py-3'>Profil</h1>
             <div className='flex gap-[20px]'>
@@ -94,8 +101,29 @@ function Profile() {
                             </div>
                         </div>
                         :
-                        <div className='h-full flex items-center justify-center'>
-                            <button onClick={() => setAddress(true)} className='text-[#22364A] p-2 border-[#22364A] border-[1px] rounded-md'>Tambahkan Informasi Alamat</button>
+                        <div className='p-3 flex flex-col gap-[10px]'>
+                            {alamat ?
+                                <div>
+                                    <div className='flex justify-between items-center w-full'>
+                                        <h1 className='text-[#316093] font-bold'>{alamatPengguna.alamatUtama ? "Alamat Utama" : "Detail Alamat"}</h1>
+                                        <h2 onClick={() => setAddress(true)} className='text-[#316093] font-bold cursor-pointer'>Ubah Alamat</h2>
+                                    </div>
+                                    <div className='flex flex-col gap-[14px]'>
+                                        <h1 className='text-[#316093]'>{alamatPengguna.labelAlamat}</h1>
+                                        <h1>Provinsi : {alamatPengguna.provinsi}</h1>
+                                        <h1>Kabupaten : {alamatPengguna.kabupaten}</h1>
+                                        <h1>Kecamatan : {alamatPengguna.kecamatan}</h1>
+                                        <h1>Kelurahan : {alamatPengguna.kelurahan}</h1>
+                                        <h1>Kode Pos : {alamatPengguna.kodePos}</h1>
+                                        <h1>Nama Lengkap : {alamatPengguna.namaLengkap}</h1>
+                                        <h1>No Hp : {alamatPengguna.noHp}</h1>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <button onClick={() => setAddress(true)} className='text-[#22364A] p-2 border-[#22364A] border-[1px] rounded-md'>Tambahkan Informasi Alamat</button>
+                                </div>
+                            }
                         </div>
                     }
 

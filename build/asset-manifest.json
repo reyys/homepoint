@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.efffebdf.css",
+    "main.css": "/static/css/main.71023b40.css",
     "main.js": "/static/js/main.e1802426.js",
     "static/media/product.png": "/static/media/product.31173d271e29e2a7ece4.png",
     "static/media/gambar6.png": "/static/media/gambar6.94633d2129c62a6b9be1.png",
@@ -10,11 +10,11 @@
     "static/media/gambar2.png": "/static/media/gambar2.ce7c75affe0963a9efaa.png",
     "static/media/gambar4.png": "/static/media/gambar4.4c5a68098044d2c0fc31.png",
     "index.html": "/index.html",
-    "main.efffebdf.css.map": "/static/css/main.efffebdf.css.map",
+    "main.71023b40.css.map": "/static/css/main.71023b40.css.map",
     "main.e1802426.js.map": "/static/js/main.e1802426.js.map"
   },
   "entrypoints": [
-    "static/css/main.efffebdf.css",
+    "static/css/main.71023b40.css",
     "static/js/main.e1802426.js"
   ]
 }

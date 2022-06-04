@@ -68,6 +68,10 @@
   .modal-bg {
     height: 200vh;
   }
+
+  .modal-auto {
+    height: 80%;
+  }
 }
 @media only screen and (max-width: 368px) {
   .grid {
@@ -76,5 +80,9 @@
 
   .modal-bg {
     height: 200vh;
+  }
+
+  .modal-auto {
+    height: 70%;
   }
 }

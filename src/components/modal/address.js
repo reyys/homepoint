@@ -48,9 +48,13 @@ function Address({ setAddress, setAlamatPengguna, setAlamat, alamatPengguna }) {
 
 
     return (
-        <div className='modal-bg flex w-full h-full absolute bg-red-500 left-0 top-0 justify-center items-center'>
-            <div className='relative modal-auto flex flex-col items-center justify-center w-[80%] md:w-[40%] h-[90%] rounded-md bg-white p-16 z-99'>
-                <img onClick={() => setAddress(false)} className="cursor-pointer absolute right-[20px] top-[20px] max-w-[20px]" src={closeIcon} alt="" />
+        <>
+            <div className='modal-bg flex w-full absolute left-0 right-0 bottom-0 top-0 justify-center items-center'>
+            </div>
+            <div className='absolute mx-auto overflow-y-auto h-[90%] left-[50%] translate-xy top-[50%] w-[50%] flex flex-col items-center rounded-md bg-white p-5 z-99'>
+                <div className='w-full'>
+                    <img onClick={() => setAddress(false)} className="cursor-pointer max-w-[10px] sm:max-w-[20px] float-right" src={closeIcon} alt="" />
+                </div>
                 <h1 className='py-3 text-center font-bold text-[#316093]'>Tambahkan Alamat</h1>
                 <h1 className='py-2 w-full'>Informasi Detail Alamat</h1>
                 <div className='p-2 mt-6 w-full rounded-md border-[1px] border-[#316093]'>
@@ -87,7 +91,7 @@ function Address({ setAddress, setAlamatPengguna, setAlamat, alamatPengguna }) {
                 </div>
                 <button onClick={() => changeAddress()} className='p-2 font-semibold px-12 rounded-md mt-6 bg-[#FBC646]'>Simpan Alamat</button>
             </div>
-        </div>
+        </>
     )
 }
 

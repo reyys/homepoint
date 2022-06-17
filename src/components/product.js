@@ -42,18 +42,18 @@ function Product() {
 
                                 </div>
                                 <div className='flex px-5 border-r-[1px] border-black'>
-                                    <h3>487</h3>
+                                    <h3>{product[0].ratingCount}</h3>
                                     <span className='ml-2 font-light'>Penilaian</span>
                                 </div>
                                 <div className='flex px-5 border-r-[1px] border-black'>
-                                    <h3>1,8RB</h3>
+                                    <h3>{product[0].amountSold}</h3>
                                     <span className='ml-2 font-light'>Terjual</span>
                                 </div>
                             </div>
 
                             <div className='flex items-center'>
-                                <h1 className='before'>Rp 160.000</h1>
-                                <h1 className='text-2xl font-bold ml-2'>Rp {product[0].price}</h1>
+                                <h1 className='before text-xl'>{product[0].price}</h1>
+                                <h1 className='text-2xl mt-2 font-bold ml-2'>Rp {Math.trunc(product[0].price * (product[0].discount / 100))}</h1>
                             </div>
 
                             <div className='flex bg-[#E6EFF4] w-full mt-6 px-5 py-2 rounded-md'>
@@ -73,21 +73,9 @@ function Product() {
                             <div className='py-4'>
                                 <h1 className='py-2 font-bold'>Deskripsi</h1>
                                 <div>
-                                    <h1>Kondisi : Baru</h1>
-                                    <h1>Berat : 1.300 Gram</h1>
-                                    <h1>Bahan : Stainless Steel + PP + TPR</h1>
-                                    <h1>1 Set terdiri dari:</h1>
-                                    <h1>- Chef Knife {`(33cm x 20,5cm)`}</h1>
-                                    <h1>- Carving Knife {`(33cm x 20,5cm)`}</h1>
-                                    <h1>- Cleaver Knfie {`(30,5cm x 18cm)`}</h1>
-                                    <h1>- Paring Knife {`(20,5cm x 9,5cm)`}</h1>
-                                    <h1>Peeler</h1>
-                                    <h1>Gunting</h1>
-
                                     <div>
                                         <h1>
                                             {product[0].description}
-                                            <span className='ml-3 text-blue-500'>Lihat Selengkapnya</span>
                                         </h1>
                                     </div>
 
@@ -119,8 +107,8 @@ function Product() {
                                     <img src={product[0].productImages[0].image} className="max-w-[100px]" alt="" />
                                     <div className='text-[#316093]'>{`>`}</div>
                                 </div>
-                                <h1 className='py-5 before'>Rp 160.000</h1>
-                                <h1 className='font-bold text-2xl'>Rp 155.000</h1>
+                                <h1 className='py-5 before'>Rp {product[0].price}</h1>
+                                <h1 className='font-bold text-2xl'>Rp {Math.trunc(product[0].price * (product[0].discount / 100))}</h1>
                                 <div className='flex py-5 items-center gap-[20px]'>
                                     <div className='flex items-center gap-[20px] bg-[#22364A] px-3 py-1 rounded-xl text-white'>
                                         <div>
@@ -141,7 +129,7 @@ function Product() {
                         </div>
                     </div>
 
-                    <Ulasan />
+                    <Ulasan product={product} />
                 </div>
             </div>
         </>

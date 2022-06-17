@@ -108,19 +108,19 @@ function Profile() {
                             <div className={`h-full ${alamat ? "" : "items-center justify-center"} flex flex-col gap-[10px]`}>
                                 {alamat ?
                                     <div className='px-5 py-3'>
-                                        <div className='flex justify-between items-center w-full'>
-                                            <h1 className='text-[#316093] font-bold'>{alamatPengguna.alamatUtama ? "Alamat Utama" : "Detail Alamat"}</h1>
-                                            <h2 onClick={() => setAddress(true)} className='text-[#316093] font-bold cursor-pointer'>Ubah Alamat</h2>
+                                        <div className='flex justify-center  pb-3 border-b-[1px] border-blue-pale items-center w-full'>
+                                            <h1 className='text-[#316093] font-bold'>Pilih Alamat Pengiriman</h1>
                                         </div>
-                                        <div className='flex flex-col gap-[14px]'>
-                                            <h1 className='text-[#316093]'>{alamatPengguna.labelAlamat}</h1>
-                                            <h1>Provinsi : {alamatPengguna.provinsi}</h1>
-                                            <h1>Kabupaten : {alamatPengguna.kabupaten}</h1>
-                                            <h1>Kecamatan : {alamatPengguna.kecamatan}</h1>
-                                            <h1>Kelurahan : {alamatPengguna.kelurahan}</h1>
-                                            <h1>Kode Pos : {alamatPengguna.kodePos}</h1>
-                                            <h1>Nama Lengkap : {alamatPengguna.namaLengkap}</h1>
-                                            <h1>No Hp : {alamatPengguna.noHp}</h1>
+                                        <div >
+                                            <button className='bg-[#FBC646] font-bold rounded-md py-2 w-full my-3'>Tambah Alamat Baru</button>
+                                        </div>
+
+                                        <div className='flex px-3 border-[1px] border-blue-pale p-3 flex-col'>
+                                            <h1 className='text-xl'><span className='font-bold'>{alamatPengguna.namaLengkap}</span> ({alamatPengguna.labelAlamat}) {alamatPengguna.alamatUtama ? <span className='p-1 bg-blue-pale rounded-xl text-white px-2'>Utama</span> : ""}</h1>
+                                            <h1>{alamatPengguna.noHp}</h1>
+                                            <h1>{alamatPengguna.alamatLengkap}</h1>
+                                            <h1>{alamatPengguna.provinsi} , {alamatPengguna.kabupaten} , {alamatPengguna.kecamatan} , {alamatPengguna.kodePos} </h1>
+                                            <div className='float-left w-full font-bold' onClick={() => setAddress(true)}>Ubah Alamat</div>
                                         </div>
                                     </div>
                                     :

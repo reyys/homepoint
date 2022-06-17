@@ -13,6 +13,11 @@
   align-items: center;
 }
 
+input {
+  border: none;
+  outline: none;
+}
+
 .input-checkbox::after {
   content: "✔";
   font-size: 1rem;

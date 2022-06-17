@@ -250,7 +250,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                             <input value={filterList.brand} name="brand" onChange={e => searchFilterBrand(e)} placeholder='Input text' className='w-full outline-none border-none' />
                             <AiOutlineSearch />
                         </div>
-                        <div className='py-5 flex flex-col gap-[10px] mt-5'>
+                        <div className='py-5 max-h-[230px] overflow-y-auto flex flex-col gap-[10px] mt-5'>
                             <div className='flex gap-[20px] items-center'>
                                 <input checked={filterList.vishal} name="vishal" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>VISHAL</h2>
@@ -274,6 +274,10 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                             <div className='flex gap-[20px] items-center'>
                                 <input checked={filterList.oxone} name="oxone" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>Oxone</h2>
+                            </div>
+                            <div className='flex gap-[20px] items-center'>
+                                <input checked={filterList.oxone} name="oxone" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <h2>Oke</h2>
                             </div>
                         </div>
                     </div>

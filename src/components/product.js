@@ -1,5 +1,4 @@
 import React from 'react'
-import productImage from '../assets/product.png'
 import { AiFillStar } from 'react-icons/ai'
 
 import { useParams } from 'react-router-dom'
@@ -10,7 +9,6 @@ import icon3 from '../assets/icon3.png'
 import Ulasan from './ulasan'
 import { addressContext } from '../context/context'
 
-import dataList from '../data.json'
 function Product() {
 
     const { id } = useParams();

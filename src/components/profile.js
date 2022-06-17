@@ -19,9 +19,8 @@ function Profile() {
 
     const [alamat, setAlamat] = React.useState(false)
 
-    const [alamatPengguna, setAlamatPengguna] = React.useState({
+    const [alamatPengguna, setAlamatPengguna] = React.useState([])
 
-    })
     const [state, setState] = React.useState(true)
     const [modal, setModal] = React.useState(false)
     const [birth, setBirth] = React.useState(false)
@@ -30,7 +29,6 @@ function Profile() {
 
     const [address, setAddress] = React.useState(false)
 
-    console.log(alamatPengguna)
     return (
         <div className='w-full h-full px-4 md:py-24 flex flex-col justify-center md:items-center'>
             {modal ? <Modal setModal={setModal} setData={setData} data={data} /> : ""}
@@ -112,15 +110,19 @@ function Profile() {
                                             <h1 className='text-[#316093] font-bold'>Pilih Alamat Pengiriman</h1>
                                         </div>
                                         <div >
-                                            <button className='bg-[#FBC646] font-bold rounded-md py-2 w-full my-3'>Tambah Alamat Baru</button>
+                                            <button onClick={() => setAddress(true)} className='bg-[#FBC646] font-bold rounded-md py-2 w-full my-3'>Tambah Alamat Baru</button>
                                         </div>
-
-                                        <div className='flex px-3 border-[1px] border-blue-pale p-3 flex-col'>
-                                            <h1 className='text-xl'><span className='font-bold'>{alamatPengguna.namaLengkap}</span> ({alamatPengguna.labelAlamat}) {alamatPengguna.alamatUtama ? <span className='p-1 bg-blue-pale rounded-xl text-white px-2'>Utama</span> : ""}</h1>
-                                            <h1>{alamatPengguna.noHp}</h1>
-                                            <h1>{alamatPengguna.alamatLengkap}</h1>
-                                            <h1>{alamatPengguna.provinsi} , {alamatPengguna.kabupaten} , {alamatPengguna.kecamatan} , {alamatPengguna.kodePos} </h1>
-                                            <div className='float-left w-full font-bold' onClick={() => setAddress(true)}>Ubah Alamat</div>
+                                        <div className='flex flex-col gap-5'>
+                                            {alamatPengguna.map(each => {
+                                                return (
+                                                    <div className='flex px-3 border-[1px] border-blue-pale p-3 flex-col'>
+                                                        <h1 className='text-xl'><span className='font-bold'>{each.userAddress.namaLengkap}</span> ({each.userAddress.labelAlamat}) {each.userAddress.alamatUtama ? <span className='p-1 bg-blue-pale rounded-xl ml-2 text-sm text-white px-2'>Utama</span> : ""}</h1>
+                                                        <h1>{each.userAddress.noHp}</h1>
+                                                        <h1>{each.userAddress.alamatLengkap}</h1>
+                                                        <h1>{each.userAddress.provinsi} , {each.userAddress.kabupaten} , {each.userAddress.kecamatan} , {each.userAddress.kodePos} </h1>
+                                                    </div>
+                                                )
+                                            })}
                                         </div>
                                     </div>
                                     :

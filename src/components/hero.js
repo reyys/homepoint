@@ -58,6 +58,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
             onyx: false,
             evrierch: false,
             oxone: false,
+            unggulGroup: false,
 
             //Color
             green: false,
@@ -179,6 +180,9 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         if (filterList.oxone) {
             updatedData = updatedData.filter(x => x.brand === "oxone")
         }
+        if (filterList.unggulGroup) {
+            updatedData = updatedData.filter(x => x.brand === "Unggul Group")
+        }
 
         //Color Filter
         if (filterList.green) {
@@ -276,8 +280,8 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                                 <h2>Oxone</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.oxone} name="oxone" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>Oke</h2>
+                                <input checked={filterList.unggulGroup} name="unggulGroup" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <h2>Unggul Group</h2>
                             </div>
                         </div>
                     </div>

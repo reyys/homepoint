@@ -8,6 +8,7 @@ const PaginationPage = ({ data, productPerPage, totalPosts, paginate, currentPag
         pageNumbers.push(i);
     }
 
+
     const previousButton = () => {
         if (currentPage > 1) {
             paginate(currentPage - 1)

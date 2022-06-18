@@ -14,6 +14,8 @@ import ForgetPass from './pages/ForgetPass';
 import { Routes, Route } from 'react-router-dom'
 import { addressContext } from './context/context'
 import Header from './components/header'
+import Footer from './pages/Footer';
+import Homepage from './pages/Homepage';
 
 function App() {
 
@@ -51,13 +53,15 @@ function App() {
         <div>
             <Header menu={menu} setMenu={setMenu} searchHandler={searchHandler} />
             <Routes>
-                <Route path='/' element={<Hero data={currentPosts} setData={setData} productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} />} />
+                <Route path='/' element={<Homepage />} />
+                <Route path='/search' element={<Hero data={currentPosts} setData={setData} productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} />} />
                 <Route path='/product/:id' element={<Product />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path='/forgetpass' element={<ForgetPass />}></Route>
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/register' element={<Register />}></Route>
-                <Route path='/forgetpass' element={<ForgetPass />}></Route>
             </Routes>
+            <Footer />
         </div >
     )
 }

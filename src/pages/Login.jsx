@@ -133,9 +133,9 @@ export default function Login() {
         </div>
         {/* mid-section or form */}
 
-        <section className="flex justify-center py-12 w-full ">
+        <section className="flex justify-center md:justify-end md:px-24 py-12 w-full ">
           {/* form-section */}
-          <div className="flex flex-col px-3 items-center w-[70%] sm:w-[60%] md:w-[40%] h-fit bg-[#98B6C9] rounded-[16px]">
+          <div className="flex flex-col px-3 items-center w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%]  h-fit bg-[#98B6C9] rounded-[16px]">
             <div className="flex flex-col items-center">
               <img className="max-w-[80%]" src={homePointLogo} alt="" />
               <h2 className="font-bold text-[#22364A]">Daftar akun</h2>

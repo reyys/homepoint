@@ -12,7 +12,7 @@ function Header({ searchHandler, setMenu, menu }) {
     return (
         <>
             <div className='w-full bg-[#6999B8] px-6 md:px-16 h-[8vh] justify-between px-4 flex md:px-3 items-center'>
-                <div>
+                <div className='xl:w-[400px]'>
                     <Link to="/">
                         <img className="max-w-[100px] md:max-w-[140px]" src={Logo} alt="Homepoint" />
                     </Link>
@@ -27,9 +27,11 @@ function Header({ searchHandler, setMenu, menu }) {
                         <img className="absolute right-[20px]" src={Search} alt="search" />
                     </div>
                 </div>
-                <div className='hidden xl:flex ml-24'>
+                <div className='hidden w-[400px] xl:flex ml-24'>
                     <img className="px-5 h-[23px]" src={love} alt="love" />
-                    <img className="px-5 h-[23px]" src={cart} alt="cart" />
+                    <Link to="/search">
+                        <img className="px-5 h-[23px]" src={cart} alt="cart" />
+                    </Link>
                     <img className="px-5 h-[23px]" src={bell} alt="bell" />
                     <Link to="/login" className="px-5 h-[23px] flex items-center gap-[20px]">
                         <img src={user} alt="user" />
@@ -53,7 +55,7 @@ function Header({ searchHandler, setMenu, menu }) {
                             </div>
                         </Link>
                         <Link to="/">Wishlist</Link>
-                        <Link to="/">Cart</Link>
+                        <Link to="/search">Cart</Link>
                         <Link to="/">Notification</Link>
                         <Link to="/login">Account</Link>
                     </div>

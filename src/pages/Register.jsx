@@ -43,9 +43,9 @@ export default function Register() {
 
         {/* mid-section or form */}
 
-        <section className="flex justify-center py-12 w-full ">
+        <section className="flex justify-center px-12 md:justify-end md:px-24 py-12 w-full">
           {/* form-section */}
-          <div className="flex flex-col px-3 items-center w-[70%] sm:w-[40%] h-fit bg-[#98B6C9] rounded-[16px]">
+          <div className="flex flex-col px-3 items-centerw-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%] h-fit bg-[#98B6C9] rounded-[16px]">
             <div className="flex flex-col items-center">
               <img className="max-w-[80%]" src={homePointLogo} alt="" />
               <h2 className="font-bold text-[#22364A]">Daftar akun</h2>
@@ -91,13 +91,13 @@ export default function Register() {
               </div>
             </div>
 
-            <button onClick={handleRegister} className="bg-[#FBC646] w-[95%] py-3 rounded-[10px] mt-3">
-              <p className="font-bold ">Daftar</p>
+            <button onClick={handleRegister} className="bg-[#FBC646] w-[95%] mx-auto py-3 rounded-[10px] mt-3">
+              <p className="font-bold w-full">Daftar</p>
             </button>
 
-            <div className="my-3">Atau</div>
+            <div className="my-3 text-center mx-auto w-[95%]">Atau</div>
 
-            <div className="flex gap-[20px] my-3">
+            <div className="flex justify-center w-[95%] mx-auto gap-[20px] my-3">
               <button className="w-[20px] h-[20px] sm:w-[40px] sm:h-[40px] flex justify-center items-center rounded-[10px]">
                 <img className="w-full" src={Google} alt="" />
               </button>
@@ -106,7 +106,7 @@ export default function Register() {
               </button>
             </div>
 
-            <div className="my-3">
+            <div className="my-3 flex justify-center w-[95%] mx-auto">
               <div>
                 Sudah memiliki akun?{" "}
                 <span onClick={() => navigate("/login")} className=" cursor-pointer font-semibold">

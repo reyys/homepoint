@@ -26,7 +26,7 @@ const PaginationPage = ({ data, productPerPage, totalPosts, paginate, currentPag
     return (
         <>
             {data.length > 0 ?
-                <div className='flex gap-5 lg:float-right'>
+                <div className='flex flex-wrap gap-5 lg:float-right'>
                     <button onClick={previousButton} className='text-[#505050]'>Previous</button>
                     {pageNumbers.map(number => (
                         <div key={number} onClick={() => paginate(number)} className={`cursor-pointer ${currentPage === number ? `bg-[#FBC646] font-bold` : ""} px-3 py-2 `}>

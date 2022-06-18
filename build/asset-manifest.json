@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.44bdfc99.css",
-    "main.js": "/static/js/main.2a160ce7.js",
+    "main.js": "/static/js/main.f1c86d3a.js",
     "static/media/bannerHero-2.png": "/static/media/bannerHero-2.cca2057e0323f8bcf3bd.png",
     "static/media/bannerHero-1.png": "/static/media/bannerHero-1.7e50e60ba8d4d4d6da3e.png",
     "static/media/kitchenware-alatMakan.svg": "/static/media/kitchenware-alatMakan.adfd949f572bbe15d8d376844da1e6d7.svg",
@@ -40,10 +40,10 @@
     "static/media/index.cjs": "/static/media/index.cd351d7c31d0d3fccf96.cjs",
     "static/media/arrowGoBack.svg": "/static/media/arrowGoBack.48640a9b64c4bdff924be8eab7ea3ba5.svg",
     "main.44bdfc99.css.map": "/static/css/main.44bdfc99.css.map",
-    "main.2a160ce7.js.map": "/static/js/main.2a160ce7.js.map"
+    "main.f1c86d3a.js.map": "/static/js/main.f1c86d3a.js.map"
   },
   "entrypoints": [
     "static/css/main.44bdfc99.css",
-    "static/js/main.2a160ce7.js"
+    "static/js/main.f1c86d3a.js"
   ]
 }

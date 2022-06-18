@@ -23,7 +23,8 @@ function Product() {
                     Kategori : {product[0].productCategories.name}
                 </div>
                 <div className='w-full md:py-12 flex flex-col'>
-                    <div className='flex flex-col lg:flex-row gap-[20px] justify-between'>
+                    <div className='flex flex-col lg:flex-row gap-[20px] justify-content-between'>
+
                         <img className="max-w-[200px] md:max-w-[400px] max-h-[400px]" src={product[0].productImages[0].image} alt="" />
                         <div>
                             <h1 className='text-2xl font-semibold'>{product[0].name}</h1>
@@ -65,6 +66,7 @@ function Product() {
                                         <div>:</div>
                                     </div>
                                     <div>{product[0].color}</div>
+                                    {/* className={`w-[30px] h-[30px] bg-${product[0].color}-500 rounded-full`} */}
                                 </div>
                             </div>
 
@@ -97,7 +99,7 @@ function Product() {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full flex justify-center'>
+                        <div className='w-fit flex justify-center'>
 
                             <div className='p-3 w-fit flex flex-col max-h-[425px] ml-4 border-[#6999B8] border-[1px] rounded-md'>
                                 <div className='flex justify-center rounded-md gap-[20px] items-center p-3 border-black border-[1px]'>

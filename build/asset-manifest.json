@@ -1,20 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.3c86d466.css",
-    "main.js": "/static/js/main.27d8fdc3.js",
-    "static/media/product.png": "/static/media/product.31173d271e29e2a7ece4.png",
+    "main.css": "/static/css/main.7197c752.css",
+    "main.js": "/static/js/main.09376500.js",
+    "static/media/BgRegisLogin.svg": "/static/media/BgRegisLogin.7620279c6333531557a33ec0d7d5381c.svg",
     "static/media/gambar6.png": "/static/media/gambar6.94633d2129c62a6b9be1.png",
     "static/media/gambar3.png": "/static/media/gambar3.69857fbdbdd346ec896b.png",
     "static/media/gambar5.png": "/static/media/gambar5.d9ed62a1a405699cac21.png",
     "static/media/gambar1.png": "/static/media/gambar1.91a1280af9a0ac769495.png",
     "static/media/gambar2.png": "/static/media/gambar2.ce7c75affe0963a9efaa.png",
     "static/media/gambar4.png": "/static/media/gambar4.4c5a68098044d2c0fc31.png",
+    "static/media/HomepointLoginRegister.svg": "/static/media/HomepointLoginRegister.d887810278e50f9b77df74549172e273.svg",
+    "static/media/GoogleLogo.svg": "/static/media/GoogleLogo.e2081c1ca82d02e095eb25780d3a1ace.svg",
     "index.html": "/index.html",
-    "main.3c86d466.css.map": "/static/css/main.3c86d466.css.map",
-    "main.27d8fdc3.js.map": "/static/js/main.27d8fdc3.js.map"
+    "static/media/Facebook.svg": "/static/media/Facebook.fd2d2df9fccf2bb8433a2910c457f396.svg",
+    "static/media/arrowGoBack.svg": "/static/media/arrowGoBack.48640a9b64c4bdff924be8eab7ea3ba5.svg",
+    "main.7197c752.css.map": "/static/css/main.7197c752.css.map",
+    "main.09376500.js.map": "/static/js/main.09376500.js.map"
   },
   "entrypoints": [
-    "static/css/main.3c86d466.css",
-    "static/js/main.27d8fdc3.js"
+    "static/css/main.7197c752.css",
+    "static/js/main.09376500.js"
   ]
 }

@@ -5,12 +5,17 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import AddressProvider from './context/context.js'
 
-const root = createRoot(document.querySelector("#root"));
+import { Provider } from 'react-redux'
+import store from './components/store';
 
+
+const root = createRoot(document.querySelector("#root"));
 root.render(
-    <AddressProvider>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </AddressProvider>
+    <Provider store={store}>
+        <AddressProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </AddressProvider>
+    </Provider>
 )

@@ -163,6 +163,8 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         if (filterList.rating4) {
             updatedData = updatedData.filter(x => x.ratingAverage >= 4)
         }
+
+        // Filter Custom Brand 
         if (filterList.vishal) {
             updatedData = updatedData.filter(x => x.brand === "vishal")
         }
@@ -327,7 +329,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                                                 {each.ratingAverage}
                                             </div>
                                             <div>|</div>
-                                            <p>Terjual 100</p>
+                                            <p>Terjual {each.amountSold}</p>
                                         </div>
                                     </div>
                                 )

@@ -121,7 +121,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         setFilterList(prevState => {
             return {
                 ...prevState,
-                [e.target.name]: e.target.checked
+                [e.target.name]: !prevState[e.target.name]
             }
         })
     }
@@ -342,9 +342,9 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                             Produk tidak dapat ditemukan...
                         </div>
                     }
-                    <div className='w-full flex flex-wrap mt-5'>
+                    {/* <div className='w-full flex flex-wrap mt-5'>
                         <PaginationPage data={data} paginate={paginate} currentPage={currentPage} productPerPage={productPerPage} totalPosts={dataProduct.length} />
-                    </div>
+                    </div> */}
                 </div>
             </div >
         </>

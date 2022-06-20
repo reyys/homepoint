@@ -28,6 +28,7 @@ function App() {
         setData(dataProduct)
     }, [dataProduct])
 
+
     //Menu Handler for Mobile & Tablet
     const [menu, setMenu] = React.useState(false)
 
@@ -38,23 +39,24 @@ function App() {
     }
 
     //Pagination 
-    const [currentPage, setCurrentPage] = React.useState(1)
-    const [productPerPage, setProductPerPage] = React.useState(16)
+    // const [currentPage, setCurrentPage] = React.useState(1)
+    // const [productPerPage, setProductPerPage] = React.useState(16)
 
     // *** Pagination Pattern 
-    const indexOfLastPost = currentPage * productPerPage
-    const indexOfFirstPost = indexOfLastPost - productPerPage
-    const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost)
+    // const indexOfLastPost = currentPage * productPerPage
+    // const indexOfFirstPost = indexOfLastPost - productPerPage
+    // const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost)
 
     //Pagination Function
-    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    // const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     return (
         <div>
             <Header menu={menu} setMenu={setMenu} searchHandler={searchHandler} />
             <Routes>
                 <Route path='/' element={<Homepage />} />
-                <Route path='/search' element={<Hero data={currentPosts} setData={setData} productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} />} />
+                <Route path='/search' element={<Hero data={data} setData={setData} />} />
+                {/* productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} */}
                 <Route path='/product/:id' element={<Product />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path='/forgetpass' element={<ForgetPass />}></Route>

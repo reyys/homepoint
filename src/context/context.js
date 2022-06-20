@@ -8,6 +8,8 @@ function AddressProvider({ children }) {
     const [listProvinsi, setListProvinsi] = React.useState([])
     const [dataProduct, setDataProduct] = React.useState([])
 
+    console.log(dataProduct)
+
     React.useEffect(() => {
 
         const getProvinsi = async () => {
@@ -22,7 +24,7 @@ function AddressProvider({ children }) {
     React.useEffect(() => {
         const getProducts = async () => {
             const productData = await axios.get('https://homepoint-server-staging.herokuapp.com/api/v1/products')
-            setDataProduct(await productData.data.data)
+            setDataProduct(await productData.data.data.products)
         }
 
         getProducts()

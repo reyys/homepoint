@@ -9,9 +9,11 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
 
     const { dataProduct, setDataProduct } = React.useContext(addressContext)
 
+    const productList = dataProduct.filter(x => x.id === "3e0e9fe9-4bfc-4331-a7e1-438649a5eda7")
+
     const [filterList, setFilterList] = React.useState({
-        min: null,
-        max: null,
+        min: "",
+        max: "",
 
         //rating
         rating4: false,
@@ -44,7 +46,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         setData(dataProduct)
         setFilterList({
             min: "",
-            max: null,
+            max: "",
             //Rating
             rating4: false,
             rating3: false,
@@ -128,11 +130,10 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
 
     // Filter Color
     const colorHandler = (e) => {
-        console.log(e.target.checked)
         setFilterList(prevState => {
             return {
                 ...prevState,
-                [e.target.name]: e.target.checked
+                [e.target.name]: !prevState[e.target.name]
             }
         })
     }
@@ -230,22 +231,22 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                     <div className='p-5 flex flex-col gap-[10px]'>
                         <h2 className='mb-5'>Rating</h2>
                         <div className='flex items-center gap-[10px]'>
-                            <input checked={filterList.rating4} onClick={e => brandChecker(e)} name="rating4" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
+                            <input onClick={e => brandChecker(e)} name="rating4" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
                             <AiFillStar className='text-[#FBC646]' />
                             <h3>4 Keatas</h3>
                         </div>
                         <div className='flex items-center gap-[10px]'>
-                            <input checked={filterList.rating3} onClick={e => brandChecker(e)} name="rating3" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
+                            <input onClick={e => brandChecker(e)} name="rating3" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
                             <AiFillStar className='text-[#FBC646]' />
                             <h3>3 Keatas</h3>
                         </div>
                         <div className='flex items-center gap-[10px]'>
-                            <input checked={filterList.rating2} onClick={e => brandChecker(e)} name="rating2" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
+                            <input onClick={e => brandChecker(e)} name="rating2" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
                             <AiFillStar className='text-[#FBC646]' />
                             <h3>2 Keatas</h3>
                         </div>
                         <div className='flex items-center gap-[10px]'>
-                            <input checked={filterList.rating1} onClick={e => brandChecker(e)} name="rating1" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
+                            <input onClick={e => brandChecker(e)} name="rating1" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
                             <AiFillStar className='text-[#FBC646]' />
                             <h3>1 Keatas</h3>
                         </div>
@@ -259,31 +260,31 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                         </div>
                         <div className='py-5 max-h-[230px] overflow-y-auto flex flex-col gap-[10px] mt-5'>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.vishal} name="vishal" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="vishal" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>VISHAL</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.bolde} name="bolde" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="bolde" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>BOLDe</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.diamond} name="diamond" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="diamond" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>Diamond</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.onyx} name="onyx" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="onyx" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>Onyx</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.evrierch} name="evrierch" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="evrierch" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>EVRIERCH</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.oxone} name="oxone" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="oxone" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>Oxone</h2>
                             </div>
                             <div className='flex gap-[20px] items-center'>
-                                <input checked={filterList.unggulGroup} name="unggulGroup" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                <input name="unggulGroup" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
                                 <h2>Unggul Group</h2>
                             </div>
                         </div>
@@ -292,12 +293,12 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                     <div className='p-5 flex flex-col'>
                         <h2 className='mt-3'>Warna</h2>
                         <div className='flex mt-5 gap-[10px]'>
-                            <input checked={filterList.green} type="checkbox" onClick={e => colorHandler(e)} name="green" className='input-checkbox bg-green-500'></input>
-                            <input checked={filterList.gray} type="checkbox" onClick={e => colorHandler(e)} name="gray" className='input-checkbox bg-gray-500'></input>
-                            <input checked={filterList.violet} type="checkbox" onClick={e => colorHandler(e)} name="violet" className='input-checkbox bg-purple-500'></input>
-                            <input checked={filterList.blue} type="checkbox" onClick={e => colorHandler(e)} name="blue" className='input-checkbox bg-blue-500'></input>
-                            <input checked={filterList.yellow} type="checkbox" onClick={e => colorHandler(e)} name="yellow" className='input-checkbox bg-yellow-500'></input>
-                            <input checked={filterList.red} type="checkbox" onClick={e => colorHandler(e)} name="red" className='input-checkbox bg-red-500'></input>
+                            <input type="checkbox" onClick={e => colorHandler(e)} name="green" className='input-checkbox bg-green-500'></input>
+                            <input type="checkbox" onClick={e => colorHandler(e)} name="gray" className='input-checkbox bg-gray-500'></input>
+                            <input type="checkbox" onClick={e => colorHandler(e)} name="violet" className='input-checkbox bg-purple-500'></input>
+                            <input type="checkbox" onClick={e => colorHandler(e)} name="blue" className='input-checkbox bg-blue-500'></input>
+                            <input type="checkbox" onClick={e => colorHandler(e)} name="yellow" className='input-checkbox bg-yellow-500'></input>
+                            <input type="checkbox" onClick={e => colorHandler(e)} name="red" className='input-checkbox bg-red-500'></input>
                         </div>
                         <button onClick={advancedFiltering} className='mt-[30px] p-2 font-semibold w-[85%] rounded-md mx-auto bg-[#FBC646]'>Terapkan</button>
                     </div>

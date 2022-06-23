@@ -8,8 +8,6 @@ function AddressProvider({ children }) {
     const [listProvinsi, setListProvinsi] = React.useState([])
     const [dataProduct, setDataProduct] = React.useState([])
 
-    console.log(dataProduct)
-
     React.useEffect(() => {
 
         const getProvinsi = async () => {

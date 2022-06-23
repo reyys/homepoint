@@ -20,7 +20,7 @@ function Product() {
         <>
             <div className='px-4 lg:px-12 md:px-24'>
                 <div className='font-semibold text-lg my-5'>
-                    Kategori : {product[0].productCategories.name}
+                    Kategori : {product[0].productSubcategories.name}
                 </div>
                 <div className='w-full md:py-12 flex flex-col'>
                     <div className='flex flex-col lg:flex-row gap-[20px] justify-content-between'>

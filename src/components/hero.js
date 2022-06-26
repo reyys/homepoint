@@ -339,8 +339,11 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                             })}
                         </div>
                         :
-                        <div className='mt-5'>
-                            Produk tidak dapat ditemukan...
+                        <div className=''>
+                            <div className='font-bold'>
+                                Maaf, Kami tidak dapat menemukan apa yang Kamu cari!
+                            </div>
+                            <div>Berikut rekomendasi kami untuk produk yang mungkin Kamu suka, Ganti kata kunci untuk menemukan produk yang Kamu inginkan</div>
                         </div>
                     }
                     {/* <div className='w-full flex flex-wrap mt-5'>

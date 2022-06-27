@@ -36,26 +36,10 @@ function Hero({ data, setData }) {
     const [color, setColor] = React.useState([])
     const [ratingData, setRatingData] = React.useState([])
 
-    console.log(ratingData)
-
 
     const [filterList, setFilterList] = React.useState({
         min: "",
         max: "",
-
-        //rating
-        rating4: false,
-        rating3: false,
-        rating2: false,
-        rating1: false,
-
-        //color
-        green: false,
-        gray: false,
-        violet: false,
-        blue: false,
-        red: false,
-        yellow: false
     })
 
     const [check, setCheck] = React.useState()
@@ -154,6 +138,13 @@ function Hero({ data, setData }) {
         }
     }
 
+    const brandHandler = (e) => {
+
+        const dataBrand = dataProduct.map(x => x.brand)
+        const filteredBrand = dataBrand.filter(x => x.toLowerCase().includes(e.target.value.toLowerCase()))
+        setBrandData(filteredBrand)
+    }
+
 
     // Filter Keseluruhan 
     const advancedFiltering = () => {
@@ -227,7 +218,7 @@ function Hero({ data, setData }) {
                     <div className='p-5'>
                         <h2>Brand</h2>
                         <div className='w-[100%] rounded-md my-3 flex items-center justify-between p-2 border-[1px] border-blue-pale'>
-                            <input onChange={(e) => setBrandData(data.filter(x => x.brand.toLowerCase().includes(e.target.value.toLowerCase())))} placeholder='Input text' className='w-full outline-none border-none' />
+                            <input onChange={(e) => brandHandler(e)} placeholder='Input text' className='w-full outline-none border-none' />
                             <AiOutlineSearch />
                         </div>
                         <div className='py-5 max-h-[230px] overflow-y-auto flex flex-col gap-[10px] mt-5'>

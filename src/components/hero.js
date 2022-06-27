@@ -259,10 +259,10 @@ function Hero({ data, setData, reload }) {
                         ?
                         <>
                             {reload ? <div>Mencari Produk ...</div> :
-                                <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[20px] '>
+                                <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[30px] '>
                                     {data.map(each => {
                                         return (
-                                            <div key={each.id} className='border-[1px] w-fit flex flex-col p-3 border-light-blue-pale rounded-md'>
+                                            <div key={each.id} className='border-[1px] w-fit flex flex-col max-w-[12rem] p-3 border-light-blue-pale rounded-md'>
                                                 <Link className='flex w-full justify-center' to={`../product/${each.id}`}>
                                                     <img className='max-w-[100px] lg:max-w-[150px]' src={each.productImages[0].image} />
                                                 </Link>

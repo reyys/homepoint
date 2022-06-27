@@ -12,6 +12,9 @@ html {
   width: 30px;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input {

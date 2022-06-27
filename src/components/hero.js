@@ -1,15 +1,43 @@
+import { Combobox } from '@headlessui/react'
 import React from 'react'
 import { AiFillStar, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { addressContext } from '../context/context'
 
-import PaginationPage from './pagination/pagination.js'
+function Hero({ data, setData }) {
 
-function Hero({ data, setData, productPerPage, paginate, currentPage }) {
+    const { dataProduct } = React.useContext(addressContext)
 
-    const { dataProduct, setDataProduct } = React.useContext(addressContext)
+    const [brandData, setBrandData] = React.useState([])
+    const [colorData, setColorData] = React.useState([])
 
-    const productList = dataProduct.filter(x => x.id === "3e0e9fe9-4bfc-4331-a7e1-438649a5eda7")
+    const [rating] = React.useState([4, 3, 2, 1])
+
+    console.log(colorData)
+
+    React.useEffect(() => {
+        const dataBrand = dataProduct.map(x => x.brand)
+        const filteredBrand = dataBrand.filter((c, index) => {
+            return dataBrand.indexOf(c) === index;
+        })
+        setBrandData(filteredBrand)
+    }, [dataProduct])
+
+    React.useEffect(() => {
+        const dataColor = dataProduct.map(x => x.color)
+        const filteredColor = dataColor.filter((c, index) => {
+            return dataColor.indexOf(c) === index;
+        })
+        setColorData(filteredColor)
+    }, [dataProduct])
+
+
+    const [brand, setBrand] = React.useState([])
+    const [color, setColor] = React.useState([])
+    const [ratingData, setRatingData] = React.useState([])
+
+    console.log(ratingData)
+
 
     const [filterList, setFilterList] = React.useState({
         min: "",
@@ -20,15 +48,6 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         rating3: false,
         rating2: false,
         rating1: false,
-
-        //brand
-        brand: "",
-        vishal: false,
-        bolde: false,
-        diamond: false,
-        onyx: false,
-        evrierch: false,
-        oxone: false,
 
         //color
         green: false,
@@ -47,29 +66,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         setFilterList({
             min: "",
             max: "",
-            //Rating
-            rating4: false,
-            rating3: false,
-            rating2: false,
-            rating1: false,
-            vishal: false,
 
-            //Brand
-            brand: "",
-            bolde: false,
-            diamond: false,
-            onyx: false,
-            evrierch: false,
-            oxone: false,
-            unggulGroup: false,
-
-            //Color
-            green: false,
-            gray: false,
-            violet: false,
-            blue: false,
-            red: false,
-            yellow: false
         })
 
     }
@@ -85,9 +82,8 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
         })
     }
 
-    // Filter untuk Fungsi Urutkan
+    // Filter untuk Fungsi Sortir
     const sortFilter = (e) => {
-
         if (e.target.value === "Terlaris") {
             const sorted = [...data].sort((a, b) => b.amountSold - a.amountSold)
             setData(sorted)
@@ -104,38 +100,58 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
             const sortedCheap = [...data].sort((a, b) => a.price - b.price)
             setData(sortedCheap)
         }
+        if (e.target.value === "Diskon") {
+            const sortedCheap = [...data].sort((a, b) => b.price - a.price)
+            setData(sortedCheap)
+        }
     }
 
-    // Filter Untuk Pencarian Product dengan nama Brand 
-    const searchFilterBrand = (e) => {
-        const value = e.target.value.toLowerCase()
-        setFilterList(prevState => {
-            return {
-                ...prevState,
-                [e.target.name]: value
-            }
-        })
-        setData(dataProduct.filter(x => x.brand.toLowerCase().includes(value)))
+    //Rating Filter
+    const ratingChecker = (e) => {
+        const exist = ratingData.find(x => x === e.target.name)
+        if (exist) {
+            setRatingData(prevState => {
+                return prevState.filter(x => x !== e.target.name)
+            })
+        }
+        else {
+            setRatingData(prevState => {
+                return [...prevState, e.target.name]
+            })
+        }
+
     }
 
-    // Filter Untuk Brand & Rating CheckBox
+
+    // Brand Filter
     const brandChecker = (e) => {
-        setFilterList(prevState => {
-            return {
-                ...prevState,
-                [e.target.name]: !prevState[e.target.name]
-            }
-        })
+        const exist = brand.find(x => x === e.target.name)
+        if (exist) {
+            setBrand(prevState => {
+                return prevState.filter(x => x !== e.target.name)
+            })
+        }
+        else {
+            setBrand(prevState => {
+                return [...prevState, e.target.name]
+            })
+        }
+
     }
 
     // Filter Color
     const colorHandler = (e) => {
-        setFilterList(prevState => {
-            return {
-                ...prevState,
-                [e.target.name]: !prevState[e.target.name]
-            }
-        })
+        const exist = color.find(x => x === e.target.name)
+        if (exist) {
+            setColor(prevState => {
+                return prevState.filter(x => x !== e.target.name)
+            })
+        }
+        else {
+            setColor(prevState => {
+                return [...prevState, e.target.name]
+            })
+        }
     }
 
 
@@ -148,64 +164,31 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
             updatedData = updatedData.filter(x => x.price >= Number(filterList.min))
         }
         if (filterList.max) {
-            updatedData = updatedData.filter(x => x.price <= filterList.max)
+            updatedData = updatedData.filter(x => x.price <= Number(filterList.max))
         }
 
         // Filter Rating 
-        if (filterList.rating1) {
-            updatedData = updatedData.filter(x => x.ratingAverage > 1)
+        if (ratingData) {
+            {
+                ratingData.map(x => {
+                    updatedData = updatedData.filter(y => y.ratingAverage >= Number(x))
+                })
+            }
         }
-        if (filterList.rating2) {
-            updatedData = updatedData.filter(x => x.ratingAverage >= 2)
-        }
-        if (filterList.rating3) {
-            updatedData = updatedData.filter(x => x.ratingAverage >= 3)
-        }
-        if (filterList.rating4) {
-            updatedData = updatedData.filter(x => x.ratingAverage >= 4)
-        }
-
         // Filter Custom Brand 
-        if (filterList.vishal) {
-            updatedData = updatedData.filter(x => x.brand === "vishal")
-        }
-        if (filterList.bolde) {
-            updatedData = updatedData.filter(x => x.brand === "bolde")
-        }
-        if (filterList.diamond) {
-            updatedData = updatedData.filter(x => x.brand === "diamond")
-        }
-        if (filterList.onyx) {
-            updatedData = updatedData.filter(x => x.brand === "onyx")
-        }
-        if (filterList.evrierch) {
-            updatedData = updatedData.filter(x => x.brand === "evrierch")
-        }
-        if (filterList.oxone) {
-            updatedData = updatedData.filter(x => x.brand === "oxone")
-        }
-        if (filterList.unggulGroup) {
-            updatedData = updatedData.filter(x => x.brand === "Unggul Group")
+        if (brand) {
+            {
+                brand.map(x => {
+                    updatedData = updatedData.filter(y => y.brand === x)
+                })
+            }
         }
 
         //Color Filter
-        if (filterList.green) {
-            updatedData = updatedData.filter(x => x.color === "green")
-        }
-        if (filterList.gray) {
-            updatedData = updatedData.filter(x => x.color === "gray")
-        }
-        if (filterList.violet) {
-            updatedData = updatedData.filter(x => x.color === "violet")
-        }
-        if (filterList.blue) {
-            updatedData = updatedData.filter(x => x.color === "blue")
-        }
-        if (filterList.yellow) {
-            updatedData = updatedData.filter(x => x.color === "yellow")
-        }
-        if (filterList.red) {
-            updatedData = updatedData.filter(x => x.color === "red")
+        if (color) {
+            color.map(x => {
+                updatedData = updatedData.filter(y => y.color === x)
+            })
         }
 
         setData(updatedData)
@@ -222,83 +205,51 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                         </div>
                         <h2 className='mt-5'>Harga</h2>
                         <div className='flex items-center mt-3 gap-[5px]'>
-                            <input value={filterList.min} id="price" name="min" onChange={e => priceChanger(e)} className="border-[1px] border-blue-pale rounded-md p-2" placeholder='Rp   Minimum' />
+                            <input value={filterList.min} id="price" name="min" onChange={e => priceChanger(e)} className="bg-light-blue-pale border-[1px] border-blue-pale rounded-md p-2" placeholder='Rp   Minimum' />
                             <div>-</div>
-                            <input value={filterList.max} id="price" name="max" onChange={e => priceChanger(e)} className="border-[1px] border-blue-pale rounded-md p-2" placeholder='Rp   Maksimum' />
+                            <input value={filterList.max} id="price" name="max" onChange={e => priceChanger(e)} className="bg-light-blue-pale border-[1px] border-blue-pale rounded-md p-2" placeholder='Rp   Maksimum' />
                         </div>
                     </div>
                     <hr className='border-blue-pale'></hr>
                     <div className='p-5 flex flex-col gap-[10px]'>
                         <h2 className='mb-5'>Rating</h2>
-                        <div className='flex items-center gap-[10px]'>
-                            <input onClick={e => brandChecker(e)} name="rating4" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <h3>4 Keatas</h3>
-                        </div>
-                        <div className='flex items-center gap-[10px]'>
-                            <input onClick={e => brandChecker(e)} name="rating3" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <h3>3 Keatas</h3>
-                        </div>
-                        <div className='flex items-center gap-[10px]'>
-                            <input onClick={e => brandChecker(e)} name="rating2" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <h3>2 Keatas</h3>
-                        </div>
-                        <div className='flex items-center gap-[10px]'>
-                            <input onClick={e => brandChecker(e)} name="rating1" className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
-                            <AiFillStar className='text-[#FBC646]' />
-                            <h3>1 Keatas</h3>
-                        </div>
+                        {rating.map(x => {
+                            return (
+                                <div className='flex items-center gap-[10px]'>
+                                    <input onClick={e => ratingChecker(e)} name={x} className='border-[1px] border-light-blue-pale rounded-md' type="checkbox" />
+                                    <AiFillStar className='text-[#FBC646]' />
+                                    <h3>{x} Keatas</h3>
+                                </div>
+                            )
+                        })}
                     </div>
                     <hr className='border-blue-pale'></hr>
                     <div className='p-5'>
                         <h2>Brand</h2>
                         <div className='w-[100%] rounded-md my-3 flex items-center justify-between p-2 border-[1px] border-blue-pale'>
-                            <input value={filterList.brand} name="brand" onChange={e => searchFilterBrand(e)} placeholder='Input text' className='w-full outline-none border-none' />
+                            <input onChange={(e) => setBrandData(data.filter(x => x.brand.toLowerCase().includes(e.target.value.toLowerCase())))} placeholder='Input text' className='w-full outline-none border-none' />
                             <AiOutlineSearch />
                         </div>
                         <div className='py-5 max-h-[230px] overflow-y-auto flex flex-col gap-[10px] mt-5'>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="vishal" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>VISHAL</h2>
-                            </div>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="bolde" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>BOLDe</h2>
-                            </div>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="diamond" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>Diamond</h2>
-                            </div>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="onyx" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>Onyx</h2>
-                            </div>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="evrierch" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>EVRIERCH</h2>
-                            </div>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="oxone" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>Oxone</h2>
-                            </div>
-                            <div className='flex gap-[20px] items-center'>
-                                <input name="unggulGroup" onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                <h2>Unggul Group</h2>
-                            </div>
+                            {brandData.map(x => {
+                                return (
+                                    <div className='flex gap-[20px] items-center'>
+                                        <input name={x} onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                        <h2>{x}</h2>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                     <hr className='border-blue-pale'></hr>
                     <div className='p-5 flex flex-col'>
                         <h2 className='mt-3'>Warna</h2>
-                        <div className='flex mt-5 gap-[10px]'>
-                            <input type="checkbox" onClick={e => colorHandler(e)} name="green" className='input-checkbox bg-green-500'></input>
-                            <input type="checkbox" onClick={e => colorHandler(e)} name="gray" className='input-checkbox bg-gray-500'></input>
-                            <input type="checkbox" onClick={e => colorHandler(e)} name="violet" className='input-checkbox bg-purple-500'></input>
-                            <input type="checkbox" onClick={e => colorHandler(e)} name="blue" className='input-checkbox bg-blue-500'></input>
-                            <input type="checkbox" onClick={e => colorHandler(e)} name="yellow" className='input-checkbox bg-yellow-500'></input>
-                            <input type="checkbox" onClick={e => colorHandler(e)} name="red" className='input-checkbox bg-red-500'></input>
+                        <div className='flex max-w-[50%] mt-5 gap-[10px]'>
+                            {colorData.map(x => {
+                                return (
+                                    <input style={{ backgroundColor: `${x}` }} type="checkbox" onClick={e => colorHandler(e)} name={x} className='input-checkbox'></input>
+                                )
+                            })}
                         </div>
                         <button onClick={advancedFiltering} className='mt-[30px] p-2 font-semibold w-[85%] rounded-md mx-auto bg-[#FBC646]'>Terapkan</button>
                     </div>
@@ -311,6 +262,7 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                             <option value="Terbaru">Produk Terbaru</option>
                             <option value="Termahal">Produk Termahal</option>
                             <option value="Termurah">Produk Termurah</option>
+                            <option value="Diskon">Diskon Terbesar</option>
                         </select>
                     </div>
                     {data.length > 0
@@ -346,9 +298,6 @@ function Hero({ data, setData, productPerPage, paginate, currentPage }) {
                             <div>Berikut rekomendasi kami untuk produk yang mungkin Kamu suka, Ganti kata kunci untuk menemukan produk yang Kamu inginkan</div>
                         </div>
                     }
-                    {/* <div className='w-full flex flex-wrap mt-5'>
-                        <PaginationPage data={data} paginate={paginate} currentPage={currentPage} productPerPage={productPerPage} totalPosts={dataProduct.length} />
-                    </div> */}
                 </div>
             </div >
         </>

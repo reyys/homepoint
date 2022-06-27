@@ -1,7 +1,7 @@
 import React from "react";
-import Carousel from "../components/Carousel";
-import CarouselBestOffer from "../components/CarouselBestOffer";
-import CarouselRekomendasi from "../components/CarouselRekomendasi";
+import Carousel from "../components/carousel/Carousel";
+import CarouselBestOffer from "../components/carousel/CarouselBestOffer";
+import CarouselRekomendasi from "../components/carousel/CarouselRekomendasi";
 
 import peralatanDapurBanner from "../images/peralatanDapur.svg";
 import peralatanKebersihanBanner from "../images/peralatanKebersihan.svg";
@@ -14,8 +14,6 @@ import kitchenwareAlatMakan from "../images/kitchenware-alatMakan.svg";
 import kitchenwarePenyimpananMakanan from "../images/kitchenware-penyimpananMakanan.svg";
 import waLogo from "../images/waLogo.svg";
 
-import axios from "axios";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux/es/exports";
 import { useSelector } from "react-redux/es/exports";
 import jwtDecode from "jwt-decode";

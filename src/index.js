@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import AddressProvider from './context/context.js'
 import App from './App'
 import { Provider } from 'react-redux'
-import store from './components/store';
+import store from './components/reducers/store';
 
 
 const root = createRoot(document.querySelector("#root"));

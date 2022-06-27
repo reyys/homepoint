@@ -1,17 +1,15 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux/es/exports";
 
-import { registerUser } from "../components/action";
+import { registerUser } from "../components/reducers/action.js";
 
 import homePointLogo from "../images/HomepointLoginRegister.svg";
 import backgroundImage from "../images/BgRegisLogin.svg";
 import Google from "../images/GoogleLogo.svg";
 import Facebook from "../images/Facebook.svg";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-
-// import {} from 'react-icons'
 
 export default function Register() {
   const navigate = useNavigate();

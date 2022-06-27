@@ -2,8 +2,6 @@ import React from "react";
 
 import homePointLogo from "../images/HomepointLoginRegister.svg";
 import backgroundImage from "../images/BgRegisLogin.svg";
-import Google from "../images/GoogleLogo.svg";
-import Facebook from "../images/Facebook.svg";
 import goBack from "../images/arrowGoBack.svg";
 
 import { useState } from "react";

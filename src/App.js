@@ -22,6 +22,8 @@ function App() {
     //React Context Data ( Fetch Data using Axios )
     const { dataProduct } = React.useContext(addressContext)
 
+    const [reload, setReload] = React.useState(false)
+
     // Put dataProduct to React State
     const [data, setData] = React.useState(dataProduct)
     React.useEffect(() => {
@@ -34,8 +36,12 @@ function App() {
 
     // Search Function (Navigation)
     const searchHandler = (e) => {
+        setReload(true)
         const lowerInput = e.target.value.toLowerCase()
         setData(dataProduct.filter(x => x.name.toLowerCase().includes(lowerInput)))
+        setTimeout(() => {
+            setReload(false)
+        }, 300)
     }
 
     //Pagination 
@@ -55,7 +61,7 @@ function App() {
             <Header menu={menu} setMenu={setMenu} searchHandler={searchHandler} />
             <Routes>
                 <Route path='/' element={<Homepage />} />
-                <Route path='/search' element={<Hero data={data} setData={setData} />} />
+                <Route path='/search' element={<Hero data={data} setData={setData} reload={reload} />} />
                 {/* productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} */}
                 <Route path='/product/:id' element={<Product />} />
                 <Route path="/profile" element={<Profile />} />

@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { addressContext } from '../context/context'
 
-function Hero({ data, setData }) {
+function Hero({ data, setData, reload }) {
 
     const { dataProduct } = React.useContext(addressContext)
 
@@ -13,23 +13,22 @@ function Hero({ data, setData }) {
 
     const [rating] = React.useState([4, 3, 2, 1])
 
-    console.log(colorData)
 
     React.useEffect(() => {
-        const dataBrand = dataProduct.map(x => x.brand)
+        const dataBrand = data.map(x => x.brand)
         const filteredBrand = dataBrand.filter((c, index) => {
             return dataBrand.indexOf(c) === index;
         })
         setBrandData(filteredBrand)
-    }, [dataProduct])
+    }, [data])
 
     React.useEffect(() => {
-        const dataColor = dataProduct.map(x => x.color)
+        const dataColor = data.map(x => x.color)
         const filteredColor = dataColor.filter((c, index) => {
             return dataColor.indexOf(c) === index;
         })
         setColorData(filteredColor)
-    }, [dataProduct])
+    }, [data])
 
 
     const [brand, setBrand] = React.useState([])
@@ -258,29 +257,33 @@ function Hero({ data, setData }) {
                     </div>
                     {data.length > 0
                         ?
-                        <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[20px] '>
-                            {data.map(each => {
-                                return (
-                                    <div key={each.id} className='border-[1px] w-fit flex flex-col p-3 border-light-blue-pale rounded-md'>
-                                        <Link className='flex w-full justify-center' to={`../product/${each.id}`}>
-                                            <img className='max-w-[100px] lg:max-w-[150px]' src={each.productImages[0].image} />
-                                        </Link>
-                                        <h3 className='text-left'>{each.name}</h3>
-                                        <div className='mt-auto'>
-                                            <h3 className='font-bold mt-auto'>Rp {each.price}</h3>
-                                            <div className='flex gap-[10px] items-center'>
-                                                <div className='flex items-center gap-[5px]'>
-                                                    <AiFillStar className='text-[#FBC646]' />
-                                                    {each.ratingAverage}
+                        <>
+                            {reload ? <div>Mencari Produk ...</div> :
+                                <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[20px] '>
+                                    {data.map(each => {
+                                        return (
+                                            <div key={each.id} className='border-[1px] w-fit flex flex-col p-3 border-light-blue-pale rounded-md'>
+                                                <Link className='flex w-full justify-center' to={`../product/${each.id}`}>
+                                                    <img className='max-w-[100px] lg:max-w-[150px]' src={each.productImages[0].image} />
+                                                </Link>
+                                                <h3 className='text-left'>{each.name}</h3>
+                                                <div className='mt-auto'>
+                                                    <h3 className='font-bold mt-auto'>Rp {each.price}</h3>
+                                                    <div className='flex gap-[10px] items-center'>
+                                                        <div className='flex items-center gap-[5px]'>
+                                                            <AiFillStar className='text-[#FBC646]' />
+                                                            {each.ratingAverage}
+                                                        </div>
+                                                        <div>|</div>
+                                                        <p>Terjual {each.amountSold}</p>
+                                                    </div>
                                                 </div>
-                                                <div>|</div>
-                                                <p>Terjual {each.amountSold}</p>
                                             </div>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
+                                        )
+                                    })}
+                                </div>
+                            }
+                        </>
                         :
                         <div className=''>
                             <div className='font-bold'>

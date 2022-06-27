@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 90%;
+}
+
 .input-checkbox {
   appearance: none;
-  height: 2rem;
-  width: 4rem;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 input {

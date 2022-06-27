@@ -234,7 +234,7 @@ function Hero({ data, setData, reload }) {
                     <hr className='border-blue-pale'></hr>
                     <div className='p-5 flex flex-col'>
                         <h2 className='mt-3'>Warna</h2>
-                        <div className='flex max-w-[50%] mt-5 gap-[10px]'>
+                        <div className='flex flex-wrap mt-5 gap-3 max-w-[100%]'>
                             {colorData.map(x => {
                                 return (
                                     <input style={{ backgroundColor: `${x}` }} type="checkbox" onClick={e => colorHandler(e)} name={x} className='input-checkbox'></input>

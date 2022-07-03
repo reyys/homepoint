@@ -7,8 +7,9 @@ import cart from '../assets/icon/cart.png'
 import user from '../assets/icon/user.png'
 import { Link } from 'react-router-dom'
 import { AiOutlineMenu } from 'react-icons/ai'
+import Dropdown from '../assets/dropdown.svg'
 
-function Header({ searchHandler, setMenu, menu }) {
+function Header({ searchHandler, setMenu, menu, open, setOpen }) {
     return (
         <>
             <div className='w-full bg-[#6999B8] px-6 md:px-16 h-[8vh] justify-between px-4 flex md:px-3 items-center'>
@@ -17,13 +18,15 @@ function Header({ searchHandler, setMenu, menu }) {
                         <img className="max-w-[100px] md:max-w-[140px]" src={Logo} alt="Homepoint" />
                     </Link>
                 </div>
-                <div className='hidden xl:flex items-center relative'>
-                    <select className='border-none outline-none h-[30px] text-sm px-3'>
-                        <option value="Kategori">Kategori</option>
-                    </select>
+                <div className='hidden xl:flex bg-white rounded-md items-center relative'>
+                    <button onClick={() => setOpen(!open)} className='flex border-none outline-none h-[30px] text-sm px-5 gap-3 items-center'>
+                        <div>Kategori</div>
+                        <div><img src={Dropdown} alt="" /></div>
+                    </button>
+                    <div>|</div>
                     {/* {e => setQ(e.target.value)} */}
-                    <div className='h-[30px] flex items-center'>
-                        <input onChange={e => searchHandler(e)} className="border-none outline-none px-4 h-full border-none lg:w-[450px]" placeholder='Search ...' />
+                    <div style={{ background: "transparent" }} className='h-[30px] flex items-center'>
+                        <input style={{ background: "transparent" }} onChange={e => searchHandler(e)} className="border-none outline-none px-4 h-full border-none lg:w-[450px]" placeholder='Search ...' />
                         <img className="absolute right-[20px]" src={Search} alt="search" />
                     </div>
                 </div>
@@ -47,9 +50,6 @@ function Header({ searchHandler, setMenu, menu }) {
                     <div className="flex gap-5 py-5 text-white flex-col px-6 md:px-16 w-full bg-[#6999B8]">
                         <Link to="/">
                             <div className='flex items-center relative'>
-                                <select className='border-none text-black outline-none h-[20px] sm:h-[30px] text-sm px-3'>
-                                    <option value="Kategori">Kategori</option>
-                                </select>
                                 <div className='h-[20px] sm:h-[30px] bg-red-500 w-full flex items-center'>
                                     <input onChange={e => searchHandler(e)} className="text-black border-none outline-none pl-3 h-full border-none w-[100%]" placeholder='Search ...' />
                                     <img className="absolute w-[10px] md:w-[15px] right-[10px] sm:right-[20px]" src={Search} alt="search" />

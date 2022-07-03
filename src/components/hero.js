@@ -9,7 +9,7 @@ import ReactPaginate from 'react-paginate';
 
 
 
-function Hero({ data, setData, reload }) {
+function Hero({ data, setData, reload, open }) {
 
     const { dataProduct } = React.useContext(addressContext)
 
@@ -226,38 +226,40 @@ function Hero({ data, setData, reload }) {
 
     return (
         <>
-            <div className='p-12 justify-between flex gap-12'>
-                <div className='font-bold'>Semua Kategori</div>
-                <div>
-                    <div className='font-bold px-2'>Peralatan Dapur</div>
-                    <ul className="flex flex-col gap-3 mt-3">
-                        <li onClick={e => handleSubCategories(e)} id="Peralatan Masak" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Peralatan Masak</li>
-                        <li onClick={e => handleSubCategories(e)} id="Aksesoris Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Aksesoris Dapur</li>
-                        <li onClick={e => handleSubCategories(e)} id="Perlengkapan Masak" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Perlengkapan Masak</li>
-                    </ul>
-                </div>
-                <div>
-                    <div className='font-bold px-2'>Furnitur</div>
-                    <ul className="flex flex-col gap-3 mt-3">
-                        <li onClick={e => handleSubCategories(e)} id="Furnitur Furnitur Interior" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Furnitur Furnitur Interior</li>
-                        <li onClick={e => handleSubCategories(e)} id="Furnitur Furnitur Eksterior" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Furnitur Furnitur Eksterior</li>
-                    </ul>
-                </div>
-                <div>
-                    <div className='font-bold px-2'>Peralatan Kebersihan</div>
-                    <ul className="flex flex-col gap-3 mt-3">
-                        <li onClick={e => handleSubCategories(e)} id="Kebersihan Rumah" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Rumah</li>
-                        <li onClick={e => handleSubCategories(e)} id="Kebersihan Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Dapur</li>
-                        <li onClick={e => handleSubCategories(e)} id="Kebersihan Toilet" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Toilet</li>
-                    </ul>
-                </div>
-                <div>
-                    <div className='font-bold px-2'>Elektronik</div>
-                    <ul className="flex flex-col gap-3 mt-3">
-                        <li onClick={e => handleSubCategories(e)} id="Elektronik Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Elektronik Dapur</li>
-                        <li onClick={e => handleSubCategories(e)} id="Elektronik Kebersihan" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Elektronik Kebersihan</li>
-                        <li onClick={e => handleSubCategories(e)} id="Perangkat Elektronik" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Perangkat Elektronik</li>
-                    </ul>
+            <div className={`${open ? "show-dropdown" : "hide-dropdown"} flex gap-12`}>
+                <div className="p-12 flex justify-between w-full">
+                    <div className='font-bold'>Semua Kategori</div>
+                    <div>
+                        <div className='font-bold px-2'>Peralatan Dapur</div>
+                        <ul className="flex flex-col gap-3 mt-3">
+                            <li onClick={e => handleSubCategories(e)} id="Peralatan Masak" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Peralatan Masak</li>
+                            <li onClick={e => handleSubCategories(e)} id="Aksesoris Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Aksesoris Dapur</li>
+                            <li onClick={e => handleSubCategories(e)} id="Perlengkapan Masak" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Perlengkapan Masak</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div className='font-bold px-2'>Furnitur</div>
+                        <ul className="flex flex-col gap-3 mt-3">
+                            <li onClick={e => handleSubCategories(e)} id="Furnitur Furnitur Interior" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Furnitur Furnitur Interior</li>
+                            <li onClick={e => handleSubCategories(e)} id="Furnitur Furnitur Eksterior" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Furnitur Furnitur Eksterior</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div className='font-bold px-2'>Peralatan Kebersihan</div>
+                        <ul className="flex flex-col gap-3 mt-3">
+                            <li onClick={e => handleSubCategories(e)} id="Kebersihan Rumah" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Rumah</li>
+                            <li onClick={e => handleSubCategories(e)} id="Kebersihan Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Dapur</li>
+                            <li onClick={e => handleSubCategories(e)} id="Kebersihan Toilet" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Toilet</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div className='font-bold px-2'>Elektronik</div>
+                        <ul className="flex flex-col gap-3 mt-3">
+                            <li onClick={e => handleSubCategories(e)} id="Elektronik Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Elektronik Dapur</li>
+                            <li onClick={e => handleSubCategories(e)} id="Elektronik Kebersihan" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Elektronik Kebersihan</li>
+                            <li onClick={e => handleSubCategories(e)} id="Perangkat Elektronik" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Perangkat Elektronik</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div className='px-4 lg:px-16 flex flex-col items-center lg:flex-row lg:items-start py-5'>

@@ -105,6 +105,17 @@ input {
   transform: translate(-50%, -50%);
 }
 
+.hide-dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in;
+}
+
+.show-dropdown {
+  max-height: 20rem;
+  transition: max-height 0.5s ease-out;
+}
+
 /* // Responsive Modal Window  */
 
 @media only screen and (max-width: 768px) {

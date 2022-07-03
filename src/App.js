@@ -57,12 +57,13 @@ function App() {
     //Pagination Function
     // const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
+    const [open, setOpen] = React.useState(false)
     return (
         <div>
-            <Header menu={menu} setMenu={setMenu} searchHandler={searchHandler} />
+            <Header menu={menu} setMenu={setMenu} open={open} setOpen={setOpen} searchHandler={searchHandler} />
             <Routes>
                 <Route path='/' element={<Homepage />} />
-                <Route path='/search' element={<Hero data={data} setData={setData} reload={reload} />} />
+                <Route path='/search' element={<Hero data={data} setData={setData} reload={reload} open={open} />} />
                 <Route path='/wishlist' element={<Wishlist />} />
                 {/* productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} */}
                 <Route path='/product/:id' element={<Product />} />

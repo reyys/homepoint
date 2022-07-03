@@ -18,6 +18,12 @@ function Hero({ data, setData, reload, open }) {
     const [pageNumber, setPageNumber] = useState(0)
     const [pageSize] = useState(16)
 
+    const [unsorted, setUnsorted] = useState(items)
+
+    useEffect(() => {
+        setUnsorted(items)
+    }, [items])
+
     const handlePageClick = (data) => {
         setPageNumber(data.selected)
     }
@@ -118,9 +124,8 @@ function Hero({ data, setData, reload, open }) {
             const sortedCheap = [...data].sort((a, b) => b.discount - a.discount)
             setData(sortedCheap)
         }
-        if (e.target.value === "Normal") {
-            const sortedNormal = [...data].sort()
-            setData(sortedNormal)
+        if (e.target.value === "Sesuai") {
+            setData(unsorted.products)
         }
     }
 
@@ -337,13 +342,13 @@ function Hero({ data, setData, reload, open }) {
                                 <>
                                     <div className='flex items-center'>
                                         <h3 className='font-bold'>Urutkan</h3>
-                                        <select onChange={e => sortFilter(e)} className='ml-5 outline-none p-3 rounded-md border-[1px] border-light-blue-pale'>
+                                        <select onChange={e => sortFilter(e)} className='ml-5 outline-none p-3 rounded-md border-[1px] border-light-blue-pale' placeholder='Urutkan dari'>
                                             <option value="Terlaris">Produk Terlaris</option>
                                             <option value="Terbaru">Produk Terbaru</option>
                                             <option value="Termahal">Produk Termahal</option>
                                             <option value="Termurah">Produk Termurah</option>
                                             <option value="Diskon">Diskon Terbesar</option>
-                                            <option value="Normal">Paling Sesuai</option>
+                                            <option value="Sesuai">Paling Sesuai</option>
                                         </select>
                                     </div>
 
@@ -409,7 +414,7 @@ function Hero({ data, setData, reload, open }) {
                                             <option value="Termahal">Produk Termahal</option>
                                             <option value="Termurah">Produk Termurah</option>
                                             <option value="Diskon">Diskon Terbesar</option>
-                                            <option value="Normal">Paling Sesuai</option>
+                                            <option value="Sesuai">Paling Sesuai</option>
                                         </select>
                                     </div>
                                     <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[30px] '>

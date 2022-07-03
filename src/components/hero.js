@@ -115,7 +115,7 @@ function Hero({ data, setData, reload }) {
             setData(sortedCheap)
         }
         if (e.target.value === "Diskon") {
-            const sortedCheap = [...data].sort((a, b) => b.price - a.price)
+            const sortedCheap = [...data].sort((a, b) => b.discount - a.discount)
             setData(sortedCheap)
         }
         if (e.target.value === "Normal") {

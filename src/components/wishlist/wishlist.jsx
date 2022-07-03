@@ -13,7 +13,11 @@ function Wishlist() {
   const [mode, setMode] = React.useState(false);
   const [wishFilter, setWishFilter] = React.useState([]);
 
-  console.log(wishFilter.map((x) => x.id));
+  const [wishList, setWishList] = React.useState(state);
+
+  React.useEffect(() => {
+    setWishList(state);
+  }, [state]);
 
   const handleCheck = (e) => {
     setSelect(!select);
@@ -26,6 +30,12 @@ function Wishlist() {
         return prevState.filter((x) => x.id !== e.target.name);
       });
     }
+  };
+
+  //Search Handler
+  const searchHandler = (e) => {
+    console.log(e.target.value);
+    setWishList(state.filter((x) => x.name.toLowerCase().includes(e.target.value.toLowerCase())));
   };
 
   //Hapus checked wishlist
@@ -42,7 +52,7 @@ function Wishlist() {
       <div className="flex items-center justify-between">
         <div className="font-bold text-[1.25rem]">Wishlist</div>
         <div className="relative border-blue-pale border-[1px] p-3 rounded-md">
-          <input className="w-[30rem]" type="text" placeholder="Search wishlist" />
+          <input onChange={(e) => searchHandler(e)} className="w-[30rem]" type="text" placeholder="Search wishlist" />
           <img className="absolute right-[5%] top-[50%] translate-y-[-50%]" src={Search} alt="" />
         </div>
         {mode ? (
@@ -62,7 +72,7 @@ function Wishlist() {
       </div>
       {state ? (
         <div className="w-full grid grid-cols-6 gap-12">
-          {state.map((x) => {
+          {wishList.map((x) => {
             return (
               <div key={x.id} className="p-3 relative flex flex-col rounded-md border-[1px] border-light-blue-pale">
                 {mode ? (

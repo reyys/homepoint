@@ -28,7 +28,9 @@ function Header({ searchHandler, setMenu, menu }) {
                     </div>
                 </div>
                 <div className='hidden w-[400px] xl:flex ml-24'>
-                    <img className="px-5 h-[23px]" src={love} alt="love" />
+                    <Link to="/wishlist">
+                        <img className="px-5 h-[23px]" src={love} alt="love" />
+                    </Link>
                     <Link to="/search">
                         <img className="px-5 h-[23px]" src={cart} alt="cart" />
                     </Link>
@@ -54,7 +56,7 @@ function Header({ searchHandler, setMenu, menu }) {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/">Wishlist</Link>
+                        <Link to="/wishlist">Wishlist</Link>
                         <Link to="/search">Cart</Link>
                         <Link to="/">Notification</Link>
                         <Link to="/login">Account</Link>
@@ -62,6 +64,7 @@ function Header({ searchHandler, setMenu, menu }) {
                     :
                     ""
             }
+
         </>
     )
 }

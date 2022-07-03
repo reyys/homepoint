@@ -16,6 +16,7 @@ import { addressContext } from './context/context'
 import Header from './components/header'
 import Footer from './pages/Footer';
 import Homepage from './pages/Homepage';
+import Wishlist from './components/wishlist/wishlist';
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Homepage />} />
                 <Route path='/search' element={<Hero data={data} setData={setData} reload={reload} />} />
+                <Route path='/wishlist' element={<Wishlist />} />
                 {/* productPerPage={productPerPage} paginate={paginate} currentPage={currentPage} */}
                 <Route path='/product/:id' element={<Product />} />
                 <Route path="/profile" element={<Profile />} />

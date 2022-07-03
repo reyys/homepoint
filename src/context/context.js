@@ -1,5 +1,6 @@
-import React, { createContext } from "react";
+import React, { createContext, useReducer } from "react";
 import axios from "axios";
+import WishReducer from "./reducer";
 
 export const addressContext = createContext()
 
@@ -28,8 +29,10 @@ function AddressProvider({ children }) {
         getProducts()
     }, [])
 
+    const [state, dispatch] = useReducer(WishReducer, [])
+
     return (
-        <addressContext.Provider value={{ listProvinsi, dataProduct, setDataProduct }}>
+        <addressContext.Provider value={{ listProvinsi, dataProduct, setDataProduct, state, dispatch }}>
             {children}
         </addressContext.Provider>
     )

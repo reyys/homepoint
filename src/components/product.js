@@ -9,11 +9,22 @@ import icon3 from '../assets/icon3.png'
 import Ulasan from './ulasan'
 import { addressContext } from '../context/context'
 
+import { MdOutlineFavoriteBorder } from 'react-icons/md'
+import { AiOutlineShareAlt } from 'react-icons/ai'
+import { BsFillChatDotsFill } from 'react-icons/bs'
+
+
 function Product() {
 
     const { id } = useParams();
+    const [wish, setWish] = React.useState(false)
 
-    const { dataProduct, setDataProduct } = React.useContext(addressContext)
+    const wishHandler = () => {
+        dispatch({ type: "ADD_TO_WISHLIST", payload: product[0] })
+        setWish(true)
+    }
+
+    const { state, dispatch, dataProduct, setDataProduct } = React.useContext(addressContext)
     const product = dataProduct.filter(x => x.id === id)
 
     return (
@@ -99,8 +110,7 @@ function Product() {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-fit flex justify-center'>
-
+                        <div style={{ alignSelf: "baseline" }} className='w-fit flex flex-col justify-center items-center'>
                             <div className='p-3 w-fit flex flex-col max-h-[425px] ml-4 border-[#6999B8] border-[1px] rounded-md'>
                                 <div className='flex justify-center rounded-md gap-[20px] items-center p-3 border-black border-[1px]'>
                                     <div className='text-[#316093]'>{`<`}</div>
@@ -122,10 +132,17 @@ function Product() {
                                     <div className='text-sm whitespace-nowrap'>Stok tersedia</div>
                                 </div>
                                 <h1 className='text-sm'>Pembelian Maksimal 100 pcs</h1>
-                                <div className='mt-auto'>
+                                <div className='mt-3'>
                                     <button className='flex items-center justify-center px-5 py-3 text-center font-bold w-[100%] bg-[#FBC646]'>+ Keranjang</button>
                                 </div>
                             </div>
+                            <div className='flex gap-3 mt-6 items-center'>
+                                <MdOutlineFavoriteBorder onClick={() => wishHandler()} className={`cursor-pointer text-[1.25rem] text-blue-pale`} />
+                                <AiOutlineShareAlt className='cursor-pointer text-[1.25rem] text-blue-pale' />
+                                <BsFillChatDotsFill className='cursor-pointer text-[1.25rem] text-blue-pale' />
+                                <div className='cursor-pointer p-2 border-[1px] border-blue-pale rounded-md text-blue-pale'>Bandingkan Produk</div>
+                            </div>
+                            <div className='w-full'>{wish ? "Added to wishlist" : ""}</div>
                         </div>
                     </div>
 

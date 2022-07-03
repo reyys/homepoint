@@ -1,33 +1,65 @@
 import { Combobox } from '@headlessui/react'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { AiFillStar, AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { addressContext } from '../context/context'
+import CustomBanner from '../assets/discountBanner.svg'
+import axios from 'axios'
+import ReactPaginate from 'react-paginate';
+
+
 
 function Hero({ data, setData, reload }) {
 
     const { dataProduct } = React.useContext(addressContext)
 
+    const [items, setItems] = useState([])
+
+    const [pageNumber, setPageNumber] = useState(0)
+    const [pageSize] = useState(16)
+
+    const handlePageClick = (data) => {
+        setPageNumber(data.selected)
+    }
+
+    useEffect(() => {
+        const getData = async () => {
+            const res = await axios.get(`https://homepoint-server-staging.herokuapp.com/api/v1/products?Page%20number=${pageNumber}&Page%20size=${pageSize}`);
+            const dataResult = await res.data.data
+            setItems(dataResult)
+        }
+        getData()
+    }, [pageNumber, pageSize])
+
+    useEffect(() => {
+        setData(items.products)
+    }, [items])
+
+
     const [brandData, setBrandData] = React.useState([])
     const [colorData, setColorData] = React.useState([])
-
     const [rating] = React.useState([4, 3, 2, 1])
 
 
+
     React.useEffect(() => {
-        const dataBrand = data.map(x => x.brand)
-        const filteredBrand = dataBrand.filter((c, index) => {
-            return dataBrand.indexOf(c) === index;
-        })
-        setBrandData(filteredBrand)
+        if (data) {
+            const dataBrand = data.map(x => x.brand)
+            const filteredBrand = dataBrand.filter((c, index) => {
+                return dataBrand.indexOf(c) === index;
+            })
+            setBrandData(filteredBrand)
+        }
     }, [data])
 
     React.useEffect(() => {
-        const dataColor = data.map(x => x.color)
-        const filteredColor = dataColor.filter((c, index) => {
-            return dataColor.indexOf(c) === index;
-        })
-        setColorData(filteredColor)
+        if (data) {
+            const dataColor = data.map(x => x.color)
+            const filteredColor = dataColor.filter((c, index) => {
+                return dataColor.indexOf(c) === index;
+            })
+            setColorData(filteredColor)
+        }
     }, [data])
 
 
@@ -51,7 +83,6 @@ function Hero({ data, setData, reload }) {
             max: "",
 
         })
-
     }
 
 
@@ -86,6 +117,10 @@ function Hero({ data, setData, reload }) {
         if (e.target.value === "Diskon") {
             const sortedCheap = [...data].sort((a, b) => b.price - a.price)
             setData(sortedCheap)
+        }
+        if (e.target.value === "Normal") {
+            const sortedNormal = [...data].sort()
+            setData(sortedNormal)
         }
     }
 
@@ -184,8 +219,47 @@ function Hero({ data, setData, reload }) {
         setData(updatedData)
     }
 
+    const handleSubCategories = (e) => {
+        console.log(e.target.id)
+        setData(items.products.filter(x => x.productSubcategories.name === e.target.id))
+    }
+
     return (
         <>
+            <div className='p-12 justify-between flex gap-12'>
+                <div className='font-bold'>Semua Kategori</div>
+                <div>
+                    <div className='font-bold px-2'>Peralatan Dapur</div>
+                    <ul className="flex flex-col gap-3 mt-3">
+                        <li onClick={e => handleSubCategories(e)} id="Peralatan Masak" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Peralatan Masak</li>
+                        <li onClick={e => handleSubCategories(e)} id="Aksesoris Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Aksesoris Dapur</li>
+                        <li onClick={e => handleSubCategories(e)} id="Perlengkapan Masak" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Perlengkapan Masak</li>
+                    </ul>
+                </div>
+                <div>
+                    <div className='font-bold px-2'>Furnitur</div>
+                    <ul className="flex flex-col gap-3 mt-3">
+                        <li onClick={e => handleSubCategories(e)} id="Furnitur Furnitur Interior" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Furnitur Furnitur Interior</li>
+                        <li onClick={e => handleSubCategories(e)} id="Furnitur Furnitur Eksterior" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Furnitur Furnitur Eksterior</li>
+                    </ul>
+                </div>
+                <div>
+                    <div className='font-bold px-2'>Peralatan Kebersihan</div>
+                    <ul className="flex flex-col gap-3 mt-3">
+                        <li onClick={e => handleSubCategories(e)} id="Kebersihan Rumah" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Rumah</li>
+                        <li onClick={e => handleSubCategories(e)} id="Kebersihan Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Dapur</li>
+                        <li onClick={e => handleSubCategories(e)} id="Kebersihan Toilet" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Kebersihan Toilet</li>
+                    </ul>
+                </div>
+                <div>
+                    <div className='font-bold px-2'>Elektronik</div>
+                    <ul className="flex flex-col gap-3 mt-3">
+                        <li onClick={e => handleSubCategories(e)} id="Elektronik Dapur" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Elektronik Dapur</li>
+                        <li onClick={e => handleSubCategories(e)} id="Elektronik Kebersihan" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Elektronik Kebersihan</li>
+                        <li onClick={e => handleSubCategories(e)} id="Perangkat Elektronik" className="px-2 cursor-pointer hover:text-red-500 py-3 rounded-md hover:bg-orange-300">Perangkat Elektronik</li>
+                    </ul>
+                </div>
+            </div>
             <div className='px-4 lg:px-16 flex flex-col items-center lg:flex-row lg:items-start py-5'>
                 <div className='border-[1px] w-full lg:w-max border-blue-pale rounded-md'>
                     <div className='p-5'>
@@ -221,77 +295,175 @@ function Hero({ data, setData, reload }) {
                             <AiOutlineSearch />
                         </div>
                         <div className='py-5 max-h-[230px] overflow-y-auto flex flex-col gap-[10px] mt-5'>
-                            {brandData.map(x => {
-                                return (
-                                    <div className='flex gap-[20px] items-center'>
-                                        <input name={x} onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
-                                        <h2>{x}</h2>
-                                    </div>
-                                )
-                            })}
+                            {brandData ?
+                                brandData.map(x => {
+                                    return (
+                                        <div className='flex gap-[20px] items-center'>
+                                            <input name={x} onClick={e => brandChecker(e)} type="checkbox" className="border-[1px] border-light-blue-pale rounded-md" />
+                                            <h2>{x}</h2>
+                                        </div>
+                                    )
+                                })
+                                :
+                                ""
+                            }
                         </div>
                     </div>
                     <hr className='border-blue-pale'></hr>
                     <div className='p-5 flex flex-col'>
                         <h2 className='mt-3'>Warna</h2>
                         <div className='flex flex-wrap mt-5 gap-3 max-w-[100%]'>
-                            {colorData.map(x => {
-                                return (
-                                    <input style={{ backgroundColor: `${x}` }} type="checkbox" onClick={e => colorHandler(e)} name={x} className='input-checkbox'></input>
-                                )
-                            })}
+                            {colorData ?
+                                colorData.map(x => {
+                                    return (
+                                        <input id={x === "lainnya" ? "grad" : ""} style={{ backgroundColor: `${x !== "lainnya" ? x : ""}` }} type="checkbox" onClick={e => colorHandler(e)} name={x} className={`input-checkbox`}></input>
+                                    )
+                                })
+                                :
+                                ""
+                            }
                         </div>
                         <button onClick={advancedFiltering} className='mt-[30px] p-2 font-semibold w-[85%] rounded-md mx-auto bg-[#FBC646]'>Terapkan</button>
                     </div>
                 </div>
                 <div className='p-5 h-full flex flex-col lg:p-0 lg:mx-5'>
-                    <div className='flex items-center'>
-                        <h3 className='font-bold'>Urutkan</h3>
-                        <select onChange={e => sortFilter(e)} className='ml-5 outline-none p-3 rounded-md border-[1px] border-light-blue-pale'>
-                            <option value="Terlaris">Produk Terlaris</option>
-                            <option value="Terbaru">Produk Terbaru</option>
-                            <option value="Termahal">Produk Termahal</option>
-                            <option value="Termurah">Produk Termurah</option>
-                            <option value="Diskon">Diskon Terbesar</option>
-                        </select>
-                    </div>
-                    {data.length > 0
+
+                    {data
                         ?
                         <>
                             {reload ? <div>Mencari Produk ...</div> :
-                                <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[30px] '>
-                                    {data.map(each => {
-                                        return (
-                                            <div key={each.id} className='border-[1px] w-fit flex flex-col max-w-[12rem] p-3 border-light-blue-pale rounded-md'>
-                                                <Link className='flex w-full justify-center' to={`../product/${each.id}`}>
-                                                    <img className='max-w-[100px] lg:max-w-[150px]' src={each.productImages[0].image} />
-                                                </Link>
-                                                <h3 className='text-left'>{each.name}</h3>
-                                                <div className='mt-auto'>
-                                                    <h3 className='font-bold mt-auto'>Rp {each.price}</h3>
-                                                    <div className='flex gap-[10px] items-center'>
-                                                        <div className='flex items-center gap-[5px]'>
-                                                            <AiFillStar className='text-[#FBC646]' />
-                                                            {each.ratingAverage}
+                                <>
+                                    <div className='flex items-center'>
+                                        <h3 className='font-bold'>Urutkan</h3>
+                                        <select onChange={e => sortFilter(e)} className='ml-5 outline-none p-3 rounded-md border-[1px] border-light-blue-pale'>
+                                            <option value="Terlaris">Produk Terlaris</option>
+                                            <option value="Terbaru">Produk Terbaru</option>
+                                            <option value="Termahal">Produk Termahal</option>
+                                            <option value="Termurah">Produk Termurah</option>
+                                            <option value="Diskon">Diskon Terbesar</option>
+                                            <option value="Normal">Paling Sesuai</option>
+                                        </select>
+                                    </div>
+
+                                    <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[30px] '>
+                                        {
+                                            data ?
+                                                data.map(each => {
+                                                    return (
+                                                        <div key={each.id} className='border-[1px] relative w-fit flex flex-col max-w-[12rem] p-3 border-light-blue-pale rounded-md'>
+                                                            {each.discount ?
+                                                                <div className='absolute right-[5%] top-0'>
+                                                                    <img src={CustomBanner} alt="" />
+                                                                    <div style={{ transform: "translate(-50%,-50%)" }} className='text-[0.85rem] text-white absolute top-[50%] left-[50%]'>{each.discount}%</div>
+                                                                </div>
+                                                                :
+                                                                ""
+                                                            }
+                                                            <Link className='flex w-full justify-center' to={`../product/${each.id}`}>
+                                                                <img className='max-w-[100px] lg:max-w-[150px]' src={each.productImages[0].image} />
+                                                            </Link>
+                                                            <h3 className='text-left'>{each.name}</h3>
+                                                            <div className='mt-auto'>
+                                                                <h3 className={`${each.discount ? "before-2 text-[#B5B5B5]" : ""} mt-auto`}>Rp {each.price}</h3>
+                                                                {each.discount ?
+                                                                    <div className='font-bold text-[1.25rem]'>Rp {each.price - (each.price * each.discount / 100)}</div>
+                                                                    :
+                                                                    ""
+                                                                }
+                                                                <div className='flex gap-[10px] items-center'>
+                                                                    <div className='flex items-center gap-[5px]'>
+                                                                        <AiFillStar className='text-[#FBC646]' />
+                                                                        {each.ratingAverage}
+                                                                    </div>
+                                                                    <div>|</div>
+                                                                    <p>Terjual {each.amountSold}</p>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div>|</div>
-                                                        <p>Terjual {each.amountSold}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
+                                                    )
+                                                })
+                                                :
+                                                <div>Mencari Produk ...</div>
+                                        }
+                                    </div>
+                                </>
                             }
                         </>
                         :
-                        <div className=''>
-                            <div className='font-bold'>
-                                Maaf, Kami tidak dapat menemukan apa yang Kamu cari!
-                            </div>
-                            <div>Berikut rekomendasi kami untuk produk yang mungkin Kamu suka, Ganti kata kunci untuk menemukan produk yang Kamu inginkan</div>
-                        </div>
+                        <>
+                            {reload ?
+                                <div>Mencari Produk....</div>
+                                :
+                                <div className=''>
+                                    <div className='font-bold'>
+                                        Maaf, Kami tidak dapat menemukan apa yang Kamu cari!
+                                    </div>
+                                    <div>Berikut rekomendasi kami untuk produk yang mungkin Kamu suka, Ganti kata kunci untuk menemukan produk yang Kamu inginkan</div>
+                                    <div className='flex items-center'>
+                                        <h3 className='font-bold'>Urutkan</h3>
+                                        <select onChange={e => sortFilter(e)} className='ml-5 outline-none p-3 rounded-md border-[1px] border-light-blue-pale'>
+                                            <option value="Terlaris">Produk Terlaris</option>
+                                            <option value="Terbaru">Produk Terbaru</option>
+                                            <option value="Termahal">Produk Termahal</option>
+                                            <option value="Termurah">Produk Termurah</option>
+                                            <option value="Diskon">Diskon Terbesar</option>
+                                            <option value="Normal">Paling Sesuai</option>
+                                        </select>
+                                    </div>
+                                    <div className='mt-5 grid grid-cols-2 md:grid-cols-3 gap-x-[0] xl:grid-cols-4 gap-[10px] md:gap-[30px] '>
+                                        {dataProduct.map(each => {
+                                            return (
+                                                <div key={each.id} className='relative border-[1px] w-fit flex flex-col max-w-[12rem] p-3 border-light-blue-pale rounded-md'>
+                                                    {each.discount ?
+                                                        <div className='absolute right-[5%] top-0'>
+                                                            <img src={CustomBanner} alt="" />
+                                                            <div style={{ transform: "translate(-50%,-50%)" }} className='text-[0.85rem] text-white absolute top-[50%] left-[50%]'>{each.discount}%</div>
+                                                        </div>
+                                                        :
+                                                        ""
+                                                    }
+                                                    <Link className='flex w-full justify-center' to={`../product/${each.id}`}>
+                                                        <img className='max-w-[100px] lg:max-w-[150px]' src={each.productImages[0].image} />
+                                                    </Link>
+                                                    <h3 className='text-left'>{each.name}</h3>
+                                                    <div className='mt-auto'>
+                                                        <h3 className={`${each.discount ? "before-2 text-[#B5B5B5]" : ""} mt-auto`}>Rp {each.price}</h3>
+                                                        {each.discount ?
+                                                            <div className='font-bold text-[1.25rem]'>Rp {each.price - (each.price * each.discount / 100)}</div>
+                                                            :
+                                                            ""
+                                                        }
+                                                        <div className='flex gap-[10px] items-center'>
+                                                            <div className='flex items-center gap-[5px]'>
+                                                                <AiFillStar className='text-[#FBC646]' />
+                                                                {each.ratingAverage}
+                                                            </div>
+                                                            <div>|</div>
+                                                            <p>Terjual {each.amountSold}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            }
+                        </>
                     }
+                    <div>
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="Selanjutnya"
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={items.totalPage}
+                            previousLabel="Sebelumnya"
+                            renderOnZeroPageCount={null}
+                            containerClassName="flex gap-3 float-right w-fit items-center mt-12"
+                            pageClassName='p-3 px-5 text-[1.25rem]'
+                            activeClassName='bg-[#FBC646]'
+                        />
+                    </div>
                 </div>
             </div >
         </>

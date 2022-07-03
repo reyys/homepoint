@@ -7,15 +7,27 @@ import Gender from './modal/gender'
 import Nomor from './modal/nomor'
 import Address from './modal/address'
 
+
 function Profile() {
 
     const [data, setData] = React.useState({
         name: "Lynn Tanner",
-        birth: "Tanggal Lahir",
-        gender: "Jenis Kelamin",
+        birth: "1 Januari 1980",
+        gender: "Perempuan",
         email: "lynntanner@gmail.com",
-        hp: "No Hp"
+        hp: "0822333901203"
     })
+
+    React.useEffect(() => {
+        const localData = window.localStorage.getItem('profileData')
+        if (localData !== null) {
+            setData(JSON.parse(localData)) // Turn Back JSON to Object
+        }
+    }, [])
+
+    React.useEffect(() => {
+        window.localStorage.setItem('profileData', JSON.stringify(data))
+    }, [data])
 
     const [alamat, setAlamat] = React.useState(false)
 
